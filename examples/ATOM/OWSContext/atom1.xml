@@ -1,0 +1,142 @@
+<feed xmlns="http://www.w3.org/2005/Atom" 
+          xmlns:dc="http://purl.org/dc/elements/1.1/" 
+          xmlns:georss="http://www.georss.org/georss" 
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:owc="http://www.opengis.net/owc"
+          xmlns:owc_wms="http://www.opengis.net/owc/wms"
+          xml:lang="en">
+  
+   <title>Context Example :: Algal Pigment</title>
+   <subtitle type="html">
+              Example of context document with Algal Pigment Maps &lt;br/&gt;
+   </subtitle>
+   <generator uri="http://www.terradue.com" version="1.0">CAS Context Aggregator</generator>
+   <updated>2012-02-21T11:58:23Z</updated>
+   <id>https://portal.opengeospatial.org/twiki/bin/view/OWSContextswg/SpecAtomEncoding#1</id>
+
+   <entry>
+      <id>http://ows.genesi-dec.eu/geoserver/wms#world_countries</id>
+      <title>Base World Map</title>
+      <published>2011-01-10T12:00:00Z</published>
+      <updated>2012-01-31T12:00:00Z</updated>
+      <georss:polygon>-90 -180 90 -180 90 180 -90 180 -90 -180</georss:polygon>
+      <link rel="enclosure" type="image/png" length="41949" xlink:role="http://www.opengis.net/wms"
+         href="http://ows.genesi-dec.eu/geoserver/wms?LAYERS=terradue%3Aworld_countries_shp&amp;STYLES=&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;EXCEPTIONS=application%2Fvnd.ogc.se_inimage&amp;SRS=EPSG%3A4326&amp;BBOX=-180,-90,180,90&amp;WIDTH=512&amp;HEIGHT=256"/>
+      <link rel="icon" type="image/png" length="4798"
+         href="http://ows.genesi-dec.eu/geoserver/wms?LAYERS=terradue%3Aworld_countries_shp&amp;STYLES=&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;EXCEPTIONS=application%2Fvnd.ogc.se_inimage&amp;SRS=EPSG%3A4326&amp;BBOX=-180,-90,180,90&amp;WIDTH=100&amp;HEIGHT=50"/>
+      <owc:serviceOffering type="owc:wms_request" version="1.1.1">
+         <owc:OnlineResource xlink:type="simple" xlink:role="http://www.opengis.net/wms" 
+            xlink:href="http://ows.genesi-dec.eu/geoserver/wms?"/>
+         <owc_wms:layers>terradue%3Aworld_countries_shp</owc_wms:layers>
+         <owc_wms:FormatList>
+            <owc_wms:Format>image/png</owc_wms:Format>
+            <owc_wms:Format>image/jpeg</owc_wms:Format>
+         </owc_wms:FormatList>
+      </owc:serviceOffering>
+<!--
+Another way of encoding might be 
+to remove the onlineResource element like this 
+      <owc:serviceOffering version="1.1.0" xlink:type="simple" xlink:role="http://www.opengis.net/wms" 
+            xlink:href="http://ows.genesi-dec.eu/geoserver/wms?">
+         <owc_wms:layers>terradue%3Aworld_countries_shp</owc_wms:layers>
+         <owc_wms:FormatList>
+            <owc_wms:Format>image/png</owc_wms:Format>
+            <owc_wms:Format>image/jpeg</owc_wms:Format>
+         </owc_wms:FormatList>
+      </owc:serviceOffering>
+-->
+	</entry>
+   <entry>
+      <id>http://portal-dev.genesi.terradue.int/tasks/?uid=3a84c77c-dc95-4752-a318-97981979eefa</id>
+      <title>Mediterranean Sea - Jan 2012 </title>
+      <published>2012-02-01T12:10:36Z</published>
+      <updated>2012-02-21T18:09:23Z</updated>
+      <rights>free</rights>
+      <author>
+         <name>GENESI-DEC FP7</name>
+      </author>
+      <contributor>
+         <name>OWS Context SWG</name>
+      </contributor>
+      <dc:date>2012-01-01T00:00:00Z/2012-01-31T00:00:00Z</dc:date>
+      <georss:polygon>30 -10 45 -10 45 40 30 40 30 -10</georss:polygon>
+      <content type="html">
+              &lt;img src='http://portal.genesi-dec.eu/genesioutput/3a84c77c-dc95-4752-a318-97981979eefa/MER_RR__2P___ALGAL_12012010220120131W01000N3000E04000N45001853287065_browse.png' align='right' width='200px'/&gt;
+              Binning of ENVISAT MERIS Level 2 data for the creation of a Algal Level 3 map &lt;br/&gt;
+              January 2012, Mediterranean Sea &lt;br/&gt;
+      </content>
+      <link rel="icon" type="image/png" 
+         href="http://portal.genesi-dec.eu/genesioutput/3a84c77c-dc95-4752-a318-97981979eefa/MER_RR__2P___ALGAL_12012010220120131W01000N3000E04000N45001853287065_browse.png" 
+         length=""/>
+      <link rel="enclosure" type="image/tiff;subtype=geotiff" 
+         href="http://portal.genesi-dec.eu/genesioutput/3a84c77c-dc95-4752-a318-97981979eefa/MER_RR__2P___ALGAL_12012010220120131W01000N3000E04000N45001853287065.geo.tiff" 
+         length="" title="GeoTIFF File"/>
+      <link rel="enclosure" type="image/png" 
+         href="http://ows.genesi-dec.eu/geoserver/3a84c77c-dc95-4752-a318-97981979eefa/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=3a84c77c-dc95-4752-a318-97981979eefa:MER_RR__2P___ALGAL_12012010220120131W01000N3000E04000N45001853287065.geo.tiff&amp;styles=&amp;bbox=-10.0000000,30.0007476,39.9919590,45.0000000&amp;width=3003&amp;height=901&amp;srs=EPSG:4326&amp;format=image/png" 
+         length="" title="WMS GetMap Request" xlink:role="http://www.opengis.net/wms"/>
+      <link rel="alternate" type="text/html" 
+         href="http://portal-dev.genesi.terradue.int/tasks/?uid=3a84c77c-dc95-4752-a318-97981979eefa"/>
+
+
+      <owc:serviceOffering type="owc:wms_request" version="1.1.0">
+         <owc:OnlineResource xlink:type="simple" xlink:role="http://www.opengis.net/wms" 
+            xlink:href="http://ows.genesi-dec.eu/geoserver/3a84c77c-dc95-4752-a318-97981979eefa/wms?"/>
+         <owc_wms:layers>3a84c77c-dc95-4752-a318-97981979eefa:MER_RR__2P___ALGAL_12012010220120131W01000N3000E04000N45001853287065.geo.tiff</owc_wms:layers>
+         <owc_wms:FormatList>
+            <owc_wms:Format>image/png</owc_wms:Format>
+            <owc_wms:Format>application/vnd.google-earth.kml</owc_wms:Format>
+            <owc_wms:Format>image/geotiff</owc_wms:Format>
+            <owc_wms:Format>image/jpeg</owc_wms:Format>	
+         </owc_wms:FormatList> 
+      </owc:serviceOffering>
+
+   </entry>
+
+   <entry>
+      <id>http://portal-dev.genesi.terradue.int/tasks/?uid=3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab</id>
+      <title>North Sea - Jan 2012 </title>
+      <published>2012-02-21T15:11:33Z</published>
+      <updated>2012-02-21T16:21:42Z</updated>
+      <rights>free</rights>
+      <author>
+         <name>GENESI-DEC FP7</name>
+      </author>
+      <contributor>
+         <name>OWS Context SWG</name>
+      </contributor>
+      <dc:date>2012-01-01T00:00:00Z/2012-01-31T00:00:00Z</dc:date>
+      <georss:polygon>47.0 -14.00 62.00 -14.00 62.00 13.0 47.0 13.0 47.0 -14.0</georss:polygon>
+      <content type="html">
+              &lt;img src='http://portal.genesi-dec.eu/genesioutput/3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab/MER_RR__2P___ALGAL_12012010120120131W01400N4700E01300N62001853287065_browse.png' align='right' width='200px'/&gt;
+              Binning of ENVISAT MERIS Level 2 data for the creation of a Algal Level 3 map &lt;br/&gt;
+              January 2012, North Sea &lt;br/&gt;
+      </content>
+      <link rel="icon" type="image/png" 
+         href="http://portal.genesi-dec.eu/genesioutput/3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab/MER_RR__2P___ALGAL_12012010120120131W01400N4700E01300N62001853287065_browse.png" 
+         length=""/>
+      <link rel="enclosure" type="image/tiff;subtype=geotiff" 
+         href="http://portal.genesi-dec.eu/genesioutput/3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab/MER_RR__2P___ALGAL_12012010120120131W01400N4700E01300N62001853287065.geo.tiff" 
+         length="" title="GeoTIFF File"/>
+      <link rel="enclosure" type="image/png" 
+         href="http://ows.genesi-dec.eu/geoserver/3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=3a84c77c-dc95-4752-a318-97981979eefa:MER_RR__2P___ALGAL_12012010120120131W01400N4700E01300N62001853287065.geo.tiff&amp;styles=&amp;bbox=-14.00,47.0,13.0,62.00&amp;width=3003&amp;height=901&amp;srs=EPSG:4326&amp;format=image/png" 
+         length="" title="WMS GetMap Request" xlink:role="http://www.opengis.net/wms"/>
+      <link rel="alternate" type="text/html" 
+         href="http://portal-dev.genesi.terradue.int/tasks/?uid=3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab"/>
+
+
+      <owc:serviceOffering type="owc:wms_request" version="1.1.0">
+         <owc:OnlineResource xlink:type="simple" xlink:role="http://www.opengis.net/wms" 
+            xlink:href="http://ows.genesi-dec.eu/geoserver/3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab/wms?"/>
+         <owc_wms:layers>3fc9ccad-4af8-4ee4-8f4c-2210091ef7ab:MER_RR__2P___ALGAL_12012010120120131W01400N4700E01300N62001853287065.geo.tiff</owc_wms:layers>
+         <owc_wms:FormatList>
+            <owc_wms:Format>image/png</owc_wms:Format>
+            <owc_wms:Format>application/vnd.google-earth.kml</owc_wms:Format>
+            <owc_wms:Format>image/geotiff</owc_wms:Format>
+            <owc_wms:Format>image/jpeg</owc_wms:Format>	
+         </owc_wms:FormatList> 
+      </owc:serviceOffering>
+
+   </entry>
+
+</feed>
+
