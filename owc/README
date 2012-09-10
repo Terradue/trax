@@ -2,7 +2,7 @@ trax/owc
 
 = OGC Context Document in ATOM encoding version 1.0. =
 
-Data Cleansing, Validators, Stylesheet transformations and  for OWS Context Document
+Data Cleansing, Validators, Stylesheet transformations for OWS Context Documents
 
 This set of xslt files map different web services to an ATOM feed compatible with the 
 OpenGIS Web Context specification 1.0.0
