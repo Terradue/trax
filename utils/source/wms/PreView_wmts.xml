@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE WMT_MS_Capabilities SYSTEM "http://schemas.opengis.net/wms/1.1.1/capabilities_1_1_1.dtd" >
+<WMT_MS_Capabilities version="1.1.1">
+<Service>
+  <Name>OGC:WMS</Name>
+  <Title>Web Map Service - GeoWebCache</Title>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+</Service>
+<Capability>
+  <Request>
+    <GetCapabilities>
+      <Format>application/vnd.ogc.wms_xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+          </Get>
+        </HTTP>
+      </DCPType>
+    </GetCapabilities>
+    <GetMap>
+      <Format>image/jpeg</Format>
+      <Format>image/png</Format>
+      <Format>application/vnd.google-earth.kml+xml</Format>
+      <Format>image/png8</Format>
+      <Format>image/gif</Format>
+      <DCPType>
+        <HTTP>
+          <Get>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+          </Get>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+    <GetFeatureInfo>
+      <Format>text/plain</Format>
+      <Format>text/html</Format>
+      <Format>application/vnd.ogc.gml</Format>
+      <DCPType>
+        <HTTP>
+        <Get>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+        </Get>
+        </HTTP>
+      </DCPType>
+    </GetFeatureInfo>
+    <DescribeLayer>
+      <Format>application/vnd.ogc.wms_xml</Format>
+      <DCPType>
+        <HTTP>
+        <Get>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+        </Get>
+        </HTTP>
+      </DCPType>
+    </DescribeLayer>
+    <GetLegendGraphic>
+      <Format>image/png</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/gif</Format>
+      <DCPType>
+        <HTTP>
+        <Get>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/gwc/service/wms?SERVICE=WMS&amp;"/>
+        </Get>
+        </HTTP>
+      </DCPType>
+    </GetLegendGraphic>
+  </Request>
+  <Exception>
+    <Format>application/vnd.ogc.se_xml</Format>
+  </Exception>
+  <Layer>
+    <Title>GeoWebCache WMS</Title>
+    <Abstract>Note that not all GeoWebCache instances provide a full WMS service.</Abstract>
+    <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    <Layer queryable="1">
+      <Name>preview:ls_physexp</Name>
+      <Title>preview:ls_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_buffers</Name>
+      <Title>preview:cy_buffers</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ml_risk</Name>
+      <Title>preview:ml_risk</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-6.0112525019999996E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_ecoexp</Name>
+      <Title>preview:cy_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_ecoexp2</Name>
+      <Title>preview:ls_ecoexp2</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:eq_physexp</Name>
+      <Title>preview:eq_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cs_ecoexp</Name>
+      <Title>preview:cs_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:eq_intensity</Name>
+      <Title>preview:eq_intensity</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_intensity</Name>
+      <Title>preview:cy_intensity</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:fl_physexp</Name>
+      <Title>preview:fl_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_tracks</Name>
+      <Title>preview:cy_tracks</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_pr</Name>
+      <Title>preview:ls_pr</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:fi_average</Name>
+      <Title>preview:fi_average</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:fl_risk</Name>
+      <Title>preview:fl_risk</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-6.0112525019999996E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ts_frequency</Name>
+      <Title>preview:ts_frequency</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_risk</Name>
+      <Title>preview:cy_risk</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_risk</Name>
+      <Title>preview:ls_risk</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-6.0112525019999996E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-360.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:fl_ecoexp</Name>
+      <Title>preview:fl_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cs_events</Name>
+      <Title>preview:cs_events</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_frequency</Name>
+      <Title>preview:cy_frequency</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cs_physexp</Name>
+      <Title>preview:cs_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:eq_ecoexp</Name>
+      <Title>preview:eq_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_physexp2</Name>
+      <Title>preview:ls_physexp2</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ts_ecoexp</Name>
+      <Title>preview:ts_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:dr_events</Name>
+      <Title>preview:dr_events</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:eq_frequency3</Name>
+      <Title>preview:eq_frequency3</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:eq_frequency</Name>
+      <Title>preview:eq_frequency</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_sumwinds</Name>
+      <Title>preview:cy_sumwinds</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ts_physexp</Name>
+      <Title>preview:ts_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="6.0112525019999996E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="360.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_ecoexp</Name>
+      <Title>preview:ls_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cy_physexp</Name>
+      <Title>preview:cy_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:dr_physexp</Name>
+      <Title>preview:dr_physexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:dr_ecoexp</Name>
+      <Title>preview:dr_ecoexp</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:fl_frequency</Name>
+      <Title>preview:fl_frequency</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:dr_cv</Name>
+      <Title>preview:dr_cv</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:cs_frequency</Name>
+      <Title>preview:cs_frequency</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+    <Layer queryable="1">
+      <Name>preview:ls_eq</Name>
+      <Title>preview:ls_eq</Title>
+      <SRS>EPSG:900913</SRS>
+      <SRS>EPSG:4326</SRS>
+      <LatLonBoundingBox minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+      <BoundingBox SRS="EPSG:900913" minx="-2.003750834E7" miny="-2.003750834E7" maxx="2.003750834E7" maxy="2.003750834E7"/>
+      <BoundingBox SRS="EPSG:4326" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+    </Layer>
+  </Layer>
+</Capability>
+</WMT_MS_Capabilities>

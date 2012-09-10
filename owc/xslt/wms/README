@@ -1,0 +1,28 @@
+       - WMS2OWC -
+       
+       Copyright 2011-2012 Terradue srl
+       This product includes software developed by
+       Terradue srl (http://www.terradue.com/).
+       
+       Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0.
+       It maps the service to a feed and assumes all named layers are entries
+	
+       The ATOM feeds produced are classified as valid by http://validator.w3.org/feed/
+       Please send bugs and suggestions to info@terradue.com
+       
+       Accepted Parameters:
+       		- now : Parameter with the curret or desired update date to insert on the atom:updated element (Mandatory)
+       		- bbox : Restrict Context file to a specific BBOX in the format: minlon, minlat, maxlon, maxlat (Optional)
+       		- layer : Restrict Context file to a given layer (Optional). If not present the entire Capabilities document will be processed
+       		- iconheight : Height of the preview image (Optional). Default value if <xsl:value-of select="$defaulticonheight"/>
+       		- mapheight : Height of the map image (Optional). Default value if <xsl:value-of select="$defaultmapheight"/>
+       		- mode : The processing mode (Optional) 
+       			if equal to 'feed' it will produce a valid ATOM feed (default).
+       			If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter.
+       			If equal to 'list' it will only list the available layers.
+       			If equal to 'help' it will display this message.
+       			
+       			
+       		
+       	Example:
+       	xsltproc --stringparam layer "sea_ice_extent_01" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" --stringparam fragment "true" wms2owc.xsl 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetCapabilities'
