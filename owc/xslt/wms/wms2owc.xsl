@@ -22,7 +22,9 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	exclude-result-prefixes="xlink xsl wms dct exsl"
 	>
-<xsl:include href="../../../utils/xslt/utils.xsl"/>	
+	
+<xsl:include href="wms-utils.xsl"/>	
+
 
 <xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="no"/>
 	
@@ -51,16 +53,6 @@
 </xsl:choose>    
 </xsl:variable>
 <xsl:variable name="coords" select="exsl:node-set($_coords)"/>
-
-<xsl:variable name="version" select="wms:WMS_Capabilities/@version | WMT_MS_Capabilities/@version"/>
-<xsl:variable name="GETMAPonlineResource" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource/@xlink:href"/>
-<xsl:variable name="GETCAPABILITIESonlineResource" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href"/>
-<xsl:variable name="GETCAPABILITIESformat" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetCapabilities/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetCapabilities/Format[1]"/>
-
-<xsl:variable name="WMSonlineResource" select="/wms:WMS_Capabilities/wms:Service/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Service/OnlineResource/@xlink:href"/>
-<xsl:variable name="ExceptionFormat" select="/wms:WMS_Capabilities/wms:Capability/wms:Exception/wms:Format[1] | /WMT_MS_Capabilities/Capability/Exception/Format[1]"/>
-<xsl:variable name="format" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetMap/Format[1]"/>
-<xsl:variable name="rights" select="concat('Fee:',/wms:WMS_Capabilities/wms:Service/wms:Fees | /WMT_MS_Capabilities/Service/Fees,' / Contraints:',/wms:WMS_Capabilities/wms:Service/wms:AccessConstraints | /WMT_MS_Capabilities/Service/AccessConstraints)"/>
 
 <xsl:template name="help">
       <xsl:message terminate="yes">

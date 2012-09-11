@@ -36,7 +36,7 @@
 <xsl:variable name="format" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetMap/Format[1]"/>
 <xsl:variable name="rights" select="concat('Fee:',/wms:WMS_Capabilities/wms:Service/wms:Fees | /WMT_MS_Capabilities/Service/Fees,' / Contraints:',/wms:WMS_Capabilities/wms:Service/wms:AccessConstraints | /WMT_MS_Capabilities/Service/AccessConstraints)"/>
 
-<xsl:template name="help">
+<xsl:template name="msg">
       <xsl:message terminate="yes">
        - WMS2OWC -
        
@@ -74,7 +74,7 @@
 
 <xsl:choose>
 <xsl:when test="$mode='help'">
-	<xsl:call-template name="help"/>
+	<xsl:call-template name="msg"/>
 </xsl:when>
 
 <xsl:when test="$mode='list'">
