@@ -1,0 +1,6 @@
+#! /bin/sh
+echo ":: trax owc examples ::"
+
+./build-example.sh "sea_ice_extent_01" 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities' 
+
+echo ":: trax owc examples completed ::"
