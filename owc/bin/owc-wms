@@ -1,5 +1,7 @@
-! /bin/sh
-check the param
+#! /bin/sh
+folder="`dirname $0`"
+# check the param
+
 if [ -z "$1" ]
 then
 	echo "Error ! Missing Parameters"
@@ -16,4 +18,4 @@ url=$1
 layer=$2
 mode=$3
 
-curl '$url' | xsltproc --novalid --stringparam layer "$layer" stringparam mode "$mode" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" ../xslt/wms/wms2owc.xsl - 
+curl '$url' | xsltproc --novalid --stringparam layer "$layer" stringparam mode "$mode" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" folder/../xslt/wms/wms2owc.xsl - 
