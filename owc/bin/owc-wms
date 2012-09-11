@@ -1,15 +1,19 @@
-#! /bin/sh
-#check the param
-#if [ -z "$1" ]
-#then
-#	echo "Error ! Missing Parameters"
-#	echo "Usage: owc-wms <layer name> <getCapabilities url> [mode]" >&2
-#	echo "Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0." >&2
- #       echo "It maps the service to a feed and assumes all named layers are entries" >&2
-#	exit -1
-#fi
+! /bin/sh
+check the param
+if [ -z "$1" ]
+then
+	echo "Error ! Missing Parameters"
+	echo "Usage: owc-wms <getCapabilities url> <layer name> [mode]" >&2
+	echo "Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0." >&2
+        echo "It maps the service to a feed and assumes all named layers are entries" >&2
+        echo "mode : The processing mode (Optional) "
+       	echo "		if equal to 'feed' it will produce a valid ATOM feed (default)."
+       	echo "		If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter."
+	exit -1
+fi
 
-layer=$1
-url=$2
+url=$1
+layer=$2
+mode=$3
 
-xsltproc --stringparam layer "$layer" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" ../xslt/wms/wms2owc.xsl "$url" 
+curl '$url' | xsltproc --novalid --stringparam layer "$layer" stringparam mode "$mode" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" ../xslt/wms/wms2owc.xsl - 

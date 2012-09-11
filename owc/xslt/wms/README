@@ -30,4 +30,4 @@
        			
        		
        	Example:
-       	xsltproc --stringparam layer "sea_ice_extent_01" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" --stringparam fragment "true" wms2owc.xsl 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetCapabilities'
+       	xsltproc --stringparam layer "sea_ice_extent_01" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" --stringparam fragment "true" wms2owc.xsl 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities'

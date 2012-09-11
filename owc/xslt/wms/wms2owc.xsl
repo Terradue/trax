@@ -22,9 +22,10 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	exclude-result-prefixes="xlink xsl wms dct exsl"
 	>
-<xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes"/>
+<xsl:include href="../../../utils/xslt/utils.xsl"/>	
+
+<xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="no"/>
 	
-<xsl:include href="../../utils.xsl"/>
 <xsl:variable name="defaulticonheight" select="'100'"/>
 <xsl:variable name="defaultmapheight" select="'500'"/>
 
@@ -84,7 +85,6 @@
        		- mode : The processing mode (Optional) 
        			if equal to 'feed' it will produce a valid ATOM feed (default).
        			If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter.
-       			If equal to 'list' it will only list the available layers.
        			If equal to 'help' it will display this message.
        			
        			
@@ -122,9 +122,9 @@
 </xsl:when>
 <xsl:when test="$mode='list'">
 	<xsl:for-each  select="//wms:Layer[wms:Name!=''] | //Layer[Name!='']">
-		<xsl:value-of select="wms:Name | Name"/>
-		<xsl:text>
-		</xsl:text>
+<xsl:value-of select="wms:Name | Name"/>
+<xsl:text>
+</xsl:text>
 	</xsl:for-each>
 </xsl:when>
 <xsl:otherwise>
@@ -229,12 +229,13 @@
 		
 	<id><xsl:value-of select="concat($WMSonlineResource,wms:Name)"/>/</id>
         <title><xsl:value-of select="wms:Title | Title"/></title>
-        <!--<summary><xsl:value-of select="wms:Abstract | Abstract"/></summary>
-        -->
+        <summary type='text'><xsl:value-of select="wms:Abstract | Abstract"/></summary> 
+        
         <xsl:comment>
         Repeat feed dc:author and dc:publisher elements to ease xml fragment extraction
         </xsl:comment>
-        <xsl:apply-templates select="/wms:WMS_Capabilities/wms:Service/wms:ContactInformation | /WMT_MS_Capabilities/Service/ContactInformation"/>  
+        <xsl:apply-templates select="/wms:WMS_Capabilities/wms:Service/wms:ContactInformation | /WMT_MS_Capabilities/Service/ContactInformation"/>
+        <xsl:apply-templates select="wms:Attribution/wms:Title | Attribution/Title"/>
         <dc:publisher><xsl:value-of select='/wms:WMS_Capabilities/wms:Service/wms:ContactInformation/wms:ContactPersonPrimary/wms:ContactOrganization | /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization'/></dc:publisher>
         <xsl:if test="$now!=''">
         <updated><xsl:value-of select="$now"/>Z</updated>        
@@ -304,13 +305,10 @@
         
         <content type='html'>
              	&lt;br/&gt;
-             	&lt;img border='1' align='right' height='<xsl:value-of select="$iconheight"/>' 
-             		src='<xsl:value-of select="$quicklookRequest"/>'
-             		/&gt;
-             	
-             	This resource is available from a OGC WMS <xsl:value-of select="$version"/> Service..
+             	&lt;img border='1' align='right' height='<xsl:value-of select="$iconheight"/>'src='<xsl:value-of select="$quicklookRequest"/>'/&gt;
+             	<xsl:apply-templates select="wms:Attribution | Attribution" mode="html"/>
              	&lt;br/&gt;
-             	Available links :
+             	This resource is available from a OGC WMS <xsl:value-of select="$version"/> Service 
              	&lt;ul&gt;
              	&lt;li&gt;
              	&lt;a href='<xsl:value-of select="$wmsRequest"/>'&gt;
@@ -321,10 +319,7 @@
              	GetCapabilities &lt;/a&gt; request.
              	&lt;/li&gt;
              	<xsl:apply-templates select="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL" mode="html"/>
-        
              	&lt;/ul&gt;
-             	&lt;br/&gt;
-             	&lt;br/&gt;
              	&lt;p style='font-size:small'&gt;OGC Context CITE Testing XSLT (Extensible Stylesheet Language Transformations) by Terradue Srl.&lt;/p&gt;
          </content>
          
@@ -352,8 +347,6 @@
 		</xsl:for-each>
 	</owc:ServiceOffering>
 	
-	 
-             
 </entry>
 </xsl:template>
 
@@ -363,6 +356,21 @@
         </subtitle>
 </xsl:template>     
 
+    
+<xsl:template match="wms:Attribution/wms:Title | Attribution/Title">
+<dc:creator><xsl:value-of select="."/></dc:creator>
+</xsl:template>        
+
+
+<xsl:template match="wms:Attribution | Attribution" mode="html">
+&lt;b&gt;&lt;a href='<xsl:value-of select="(wms:OnlineResource | OnlineResource )/@xlink:href"/>'&gt;<xsl:value-of select="wms:Title | Title"/>&lt;/a&gt;&lt;/b&gt;
+
+<xsl:apply-templates select="wms:LogoURL | LogoURL" mode="html"/>
+</xsl:template>
+
+<xsl:template match="wms:LogoURL | LogoURL" mode="html">
+&lt;img src='<xsl:value-of select="(wms:OnlineResource | OnlineResource )/@xlink:href"/>' hspace='20' align='left' width='<xsl:value-of select="@width"/>' height='<xsl:value-of select="@height"/>'&gt;
+</xsl:template>
 
 <xsl:template match="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL">
 	<xsl:if test="wms:Format | Format != ''">
@@ -395,7 +403,6 @@
 	<xsl:if test="wms:Format | Format != ''"> <xsl:value-of select="wms:Format | Format"/></xsl:if>
 	&lt;/a&gt;
 	&lt;/li&gt;
-
 </xsl:template>
 
 
