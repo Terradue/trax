@@ -14,6 +14,7 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/" 
 	xmlns:dclite4g="http://xmlns.com/2008/dclite4g#" 
 	xmlns:dct="http://purl.org/dc/terms/" 
+	xmlns:exsl="http://exslt.org/common"
 	xmlns:foaf="http://xmlns.com/foaf/spec/"  
 	xmlns:ical="http://www.w3.org/2002/12/cal/ical#"  
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,8 +25,8 @@
 	
 	exclude-result-prefixes="xlink xsl wms exsl"
 	>
-<xsl:include href="../../../utils/xslt/utils.xsl"/>		
-<xsl:include href="../../../utils/xslt/wms-utils.xsl"/>	
+<xsl:include href="../../utils/xslt/utils.xsl"/>		
+<xsl:include href="../../utils/xslt/wms-utils.xsl"/>	
 
 
 <xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="no"/>
@@ -120,6 +121,7 @@
 
 
 <xsl:template match="wms:WMS_Capabilities | WMT_MS_Capabilities">
+<rdf:RDF>
 <dclite4g:Series>
       <xsl:attribute name="rdf:about"><xsl:value-of select="$WMSonlineResource"/></xsl:attribute>
       	
@@ -161,7 +163,7 @@
 		<xsl:apply-templates select="//wms:Layer[wms:Name!=''] | //Layer[Name!='']"/>
 	</xsl:otherwise>
      </xsl:choose>
-
+</rdf:RDF>
      
 </xsl:template>
 
@@ -178,7 +180,7 @@
 </xsl:template>
 
 
-<xsl:template match="wms:Name!=''] | Layer[Name!='']">
+<xsl:template match="wms:Layer[wms:Name!=''] | Layer[Name!='']">
 
 	<xsl:variable name="maxX"><xsl:choose><xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[3]"/></xsl:when>
 		<xsl:otherwise><xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:eastBoundLongitude | ancestor-or-self::Layer/LatLonBoundingBox/@maxx"/></xsl:otherwise></xsl:choose></xsl:variable>
@@ -192,30 +194,23 @@
 	
 	<xsl:variable name="name" select="wms:Name | Name"/>
 	
-	
 	<dclite4g:DataSet>
 		<xsl:variable name="title" select="wms:Title | Title "/>
-		<xsl:variable name="abstract" select="wms:Abstract | Abstract | "/>
+		<xsl:variable name="abstract" select="wms:Abstract | Abstract  "/>
 		<xsl:variable name="metadataURL" select="wms:MetadataURL/wms:OnlineResource/@xlink:href"/>
 		<xsl:variable name="scaleHint" select="concat(wms:ScaleHint/@min,',',wms:ScaleHint/@max)"/>
 		<xsl:variable name="format" select="//wms:Capability/wms:Request/wms:GetMap/wms:Format[1]"/>
 		
-		
-		<xsl:variable name="bbox" select="concat($minX + ($maxX - $minX) div 4,',',$minY + ($maxY - $minY) div 4,',',$maxX - ($maxX - $minX) div 4,',',$maxY - ($maxY - $minY) div 4)"/>
-		<xsl:variable name="geoRatio" select="translate((number($maxX) - number($minX) ) div ( number($maxY) - number($minY) ),'-','' ) "/>
+		<xsl:variable name="georatio" select="translate((number($maxX) - number($minX) ) div ( number($maxY) - number($minY) ),'-','' ) "/>
 		<xsl:variable name="spatial" select="concat('POLYGON((',$minX,' ',$minY,',',$minX,' ',$maxY,',',$maxX,' ',$maxY,',',$maxX,' ',$minY,',',$minX,' ',$minY,'))')"/>
 		<xsl:variable name="bbox"><xsl:choose><xsl:when test="$version='1.3.0' and $crs='EPSG:4326'"><xsl:value-of select="concat($minY,',',$minX,',',$maxY,',',$maxX)"/></xsl:when>
 		<xsl:otherwise><xsl:value-of select="concat($minX,',',$minY,',',$maxX,',',$maxY)"/></xsl:otherwise></xsl:choose></xsl:variable>
-
 	
 		<xsl:variable name="style" select="wms:Style[1]/wms:Name | Style[1]/Name"/>
-		
-		<xsl:variable name="wmsRequest" select="concat($GETMAPonlineResource,'VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($mapheight * $georatio),'&amp;HEIGHT=',$mapheight,'&amp;LAYERS=',$name,'&amp;FORMAT=',$format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$ExceptionFormat)"/>
-		<xsl:variable name="quicklookRequest" select="concat($GETMAPonlineResource,'VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($iconheight * $georatio),'&amp;HEIGHT=',$iconheight,'&amp;LAYERS=',$name,'&amp;STYLES=',$style,'&amp;FORMAT=',$format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$ExceptionFormat)"/>
-	
 
 		<!-- preference for Plate Carre on element -->
 		<!-- if no crs available then check parent --> 
+
 		<xsl:variable name="crs">
 		<xsl:choose>
 			<xsl:when test="count(wms:CRS[.='EPSG:4326'] | SRS[.='EPSG:4326'])!=0">EPSG:4326</xsl:when>
@@ -226,13 +221,16 @@
 			<xsl:otherwise><xsl:value-of select="ancestor::wms:Layer/wms:CRS[1] | ancestor::Layer/SRS[1]"/></xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>
+		
+		<xsl:variable name="wmsRequest" select="concat($GETMAPonlineResource,'VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($mapheight * $georatio),'&amp;HEIGHT=',$mapheight,'&amp;LAYERS=',$name,'&amp;FORMAT=',$format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$ExceptionFormat)"/>
+		<xsl:variable name="quicklookRequest" select="concat($GETMAPonlineResource,'VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($iconheight * $georatio),'&amp;HEIGHT=',$iconheight,'&amp;LAYERS=',$name,'&amp;STYLES=',$style,'&amp;FORMAT=',$format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$ExceptionFormat)"/>
 
 		<xsl:attribute name="rdf:about"><xsl:value-of select="$wmsRequest"/></xsl:attribute>
 		<dclite4g:series><xsl:attribute name="rdf:resource"><xsl:value-of select="$WMSonlineResource"/></xsl:attribute></dclite4g:series>
 		<dc:identifier><xsl:value-of select="$name"/></dc:identifier>
 		<dc:title><xsl:value-of select="$title"/></dc:title>
 		
-		<dc:abstract><xsl:chose><xsl:when test="$abstract!=''"><xsl:value-of select="$abstract"/></xsl:when>
+		<dc:abstract><xsl:choose><xsl:when test="$abstract!=''"><xsl:value-of select="$abstract"/></xsl:when>
 		<xsl:otherwise> &lt;br/&gt;
              	&lt;img border='1' align='right' height='<xsl:value-of select="$iconheight"/>'src='<xsl:value-of select="$quicklookRequest"/>'/&gt;
              	<xsl:apply-templates select="wms:Attribution | Attribution" mode="html"/>
@@ -252,18 +250,9 @@
              	&lt;p style='font-size:small'&gt;OGC Context CITE Testing XSLT (Extensible Stylesheet Language Transformations) by Terradue Srl.&lt;/p&gt;
              	</xsl:otherwise>
              	</xsl:choose></dc:abstract>
-		<dc:subject><dc:subject><xsl:for-each select="wms:KeywordList/wms:Keyword[not(.=following::wms:KeywordList/wms:Keyword)]"><xsl:value-of select="." /><xsl:if test="position() &lt; last()">, </xsl:if></xsl:for-each></dc:subject>
+		<dc:subject><xsl:for-each select="wms:KeywordList/wms:Keyword[not(.=following::wms:KeywordList/wms:Keyword)]"><xsl:value-of select="." /><xsl:if test="position() &lt; last()">, </xsl:if></xsl:for-each></dc:subject>
 		
 		<dct:spatial><xsl:value-of select="$spatial"/></dct:spatial>
-		<!--
-		<xsl:variable name="metadata" select="document(wms:MetadataURL/wms:OnlineResource/@xlink:href)"/>
-		<dclite4g:resolution><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dclite4g:resolution"/></dclite4g:resolution>
-		<ical:dtstart><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/ical:dtstart"/></ical:dtstart>
-		<ical:dtend><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/ical:dtend"/></ical:dtend>
-		<dct:created><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dct:created"/></dct:created>
-		<dct:modified><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dct:modified"/></dct:modified>
-		-->
-<!-- 		<dc:publisher><xsl:attribute name="rdf:about"><xsl:value-of select="$metadata//dc:publisher/@rdf:resource"/></xsl:attribute></dc:publisher> -->
 		<dc:format><xsl:value-of select="$format"/></dc:format>
 		<xsl:if test="$now!=''">
 		        <updated><xsl:value-of select="$now"/>Z</updated>        
@@ -278,7 +267,17 @@
 			<ws:WMS><xsl:attribute name="rdf:about"><xsl:value-of select="$wmsRequest"/></xsl:attribute></ws:WMS>
 		</dclite4g:onlineResource>
 		<xsl:apply-templates select="wms:DataURL"/>
+
 	</dclite4g:DataSet>
+		<!--
+		<xsl:variable name="metadata" select="document(wms:MetadataURL/wms:OnlineResource/@xlink:href)"/>
+		<dclite4g:resolution><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dclite4g:resolution"/></dclite4g:resolution>
+		<ical:dtstart><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/ical:dtstart"/></ical:dtstart>
+		<ical:dtend><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/ical:dtend"/></ical:dtend>
+		<dct:created><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dct:created"/></dct:created>
+		<dct:modified><xsl:value-of select="$metadata/rdf:RDF/dclite4g:DataSet/dct:modified"/></dct:modified>
+		-->
+<!-- 		<dc:publisher><xsl:attribute name="rdf:about"><xsl:value-of select="$metadata//dc:publisher/@rdf:resource"/></xsl:attribute></dc:publisher> -->
 	
 </xsl:template>
 
@@ -287,7 +286,7 @@
 <xsl:template match="wms:Service/wms:Abstract | Service/Abstract">
 	<dc:abstract>
 	<xsl:value-of select="."/>
-        <dc:abstract>
+        </dc:abstract>
 </xsl:template>     
 
     
@@ -316,7 +315,7 @@
 			<xsl:otherwise>
 			<xsl:value-of select="wms:Format | Format"/>
 			</xsl:otherwise>
-			</xsl:choose>
+			</xsl:choose></xsl:attribute>
 			<xsl:attribute name="atom:relation">enclosure</xsl:attribute></ws:WMS>
 	</dclite4g:onlineResource>
 	</xsl:if>
