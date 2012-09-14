@@ -1,21 +1,36 @@
 #! /bin/sh
 folder="`dirname $0`"
 # check the param
+while getopts u:l:m:b: name
+do
+ case $name in
+  u) url=$OPTARG;;
+  l) layer=$OPTARG;;
+  m) mode=$OPTARG;;
+  b) bbox=$OPTARG;;
+esac
+done
 
-if [ -z "$1" ]
+
+
+if [ -z "$url" ]
 then
-	echo "Error ! Missing Parameters"
-	echo "Usage: owc-wms <getCapabilities url> <layer name> [mode]" >&2
+	echo "Error ! Missing Parameters" >&2
+	echo "" >&2
+	echo "Usage: owc-wms -u <getCapabilities url> -l <layer name> -b <minx,miny,maxx,maxx> [-m <mode>]" >&2
 	echo "Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0." >&2
         echo "It maps the service to a feed and assumes all named layers are entries" >&2
-        echo "mode : The processing mode (Optional) "
-       	echo "		if equal to 'feed' it will produce a valid ATOM feed (default)."
-       	echo "		If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter."
+        echo "-u : The url or relative location of the OGC GetCabilities URL (Mandatory) " >&2
+        echo "-l : The layer name to be processed. This will produce only one entry (Optional)" >&2
+        echo "-b : The bounding box to restrict the requests. This parameter will override the layers bounding boxes (Optional)" >&2
+        echo "-m : The processing mode (Optional) " >&2
+       	echo "		if equal to 'feed' it will produce a valid ATOM feed (default)." >&2
+       	echo "		If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter." >&2
 	exit -1
 fi
 
-url=$1
-layer=$2
-mode=$3
 
-curl '$url' | xsltproc --novalid --stringparam layer "$layer" stringparam mode "$mode" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" folder/../xslt/wms/wms2owc.xsl - 
+
+echo $url >&2
+
+curl "$url" | xsltproc --novalid --stringparam bbox "$bbox" --stringparam layer "$layer" --stringparam mode "$mode" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" $folder/../xslt/wms/wms2owc.xsl - 

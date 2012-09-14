@@ -1,6 +1,7 @@
 #! /bin/sh
-echo ":: trax owc examples ::"
-
-./build-example.sh "sea_ice_extent_01" 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities' 
-
-echo ":: trax owc examples completed ::"
+echo ":: trax owc examples ::" >&2
+echo "        :: owc -> wms  ::" >&2
+./owc-wms -u "http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities" -l "sea_ice_extent_01"  > ../examples/sea_ice_extent_01.atom 
+./owc-wms -u "http://ows.genesi-dec.eu/geoserver/385d7d71-650a-414b-b8c7-739e2c0b5e76/wms?service=WMS&version=1.1.0&request=GetCapabilities" -l "385d7d71-650a-414b-b8c7-739e2c0b5e76:MER_RR__2PRLRA20120406_102429_000026213113_00238_52838_0211.N1.tif" -b "-2,45,8,55" > ../examples/meris.atom 
+./owc-wms -u "http://nsidc.org/cgi-bin/atlas_north?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities" -l "country_borders"  -b "-2,45,8,55" -m "fragment" > ../examples/borders.atom 
+echo ":: trax owc examples completed ::"  >&2

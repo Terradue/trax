@@ -9,5 +9,5 @@ then
         exit -1
 fi
 url=$1
-curl '$url' | xsltproc --novalid --stringparam mode "list" $folder/../xslt/wms/wms-utils.xsl  -
+curl "$url" | xsltproc --novalid --stringparam mode "list" $folder/../xslt/wms/wms-utils.xsl  -
 

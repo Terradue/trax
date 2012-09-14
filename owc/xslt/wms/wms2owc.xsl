@@ -6,7 +6,7 @@
         This product includes software developed by
         Terradue srl (http://www.terradue.com/).
         
-	TO-DO:
+	TO-DO: get geo names of selected bbox 
 -->
 
 <xsl:stylesheet version="1.0" 
@@ -23,7 +23,8 @@
 	exclude-result-prefixes="xlink xsl wms dct exsl"
 	>
 	
-<xsl:include href="wms-utils.xsl"/>	
+<xsl:include href="../../../utils/xslt/utils.xsl"/>		
+<xsl:include href="../../../utils/xslt/wms-utils.xsl"/>	
 
 
 <xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="no"/>
@@ -218,14 +219,17 @@
         <xsl:variable name="minY"><xsl:choose><xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[2]"/></xsl:when>
 		<xsl:otherwise><xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:southBoundLatitude | ancestor-or-self::Layer/LatLonBoundingBox/@miny"/></xsl:otherwise></xsl:choose></xsl:variable>
 	
-		
+	<!--
+	todo: get geo names of selections
+	<xsl:value-of select="concat('http://eo-virtual-archive4.esa.int/search/geo/rdf?geometry=POLYGON((',$minX,' ',$minY,',',$minX,' ',$maxY,',',$maxX,' ',$maxY,',',$maxX,' ',$minY,',',$minX,' ',$minY,'))')"/>
+	-->
+	
 	<id><xsl:value-of select="concat($WMSonlineResource,wms:Name)"/>/</id>
         <title><xsl:value-of select="wms:Title | Title"/></title>
-        <summary type='text'><xsl:value-of select="wms:Abstract | Abstract"/></summary> 
-        
-        <xsl:comment>
+        <!--<summary type='text'><xsl:value-of select="wms:Abstract | Abstract"/></summary> -->
+        <!--
         Repeat feed dc:author and dc:publisher elements to ease xml fragment extraction
-        </xsl:comment>
+        -->
         <xsl:apply-templates select="/wms:WMS_Capabilities/wms:Service/wms:ContactInformation | /WMT_MS_Capabilities/Service/ContactInformation"/>
         <xsl:apply-templates select="wms:Attribution/wms:Title | Attribution/Title"/>
         <dc:publisher><xsl:value-of select='/wms:WMS_Capabilities/wms:Service/wms:ContactInformation/wms:ContactPersonPrimary/wms:ContactOrganization | /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization'/></dc:publisher>
@@ -249,9 +253,7 @@
 	
 	<xsl:variable name="name" select="wms:Name | Name"/>
 	
-	
 	<xsl:variable name="crsName" select="local-name(wms:CRS[1] | SRS[1])"/>
-	
 	
 	<!-- preference for Plate Carre on element -->
 	<!-- if no crs available then check parent --> 
@@ -295,25 +297,25 @@
 	</link>
 	<xsl:apply-templates select="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL"/>
         
-        <content type='html'>
-             	&lt;br/&gt;
-             	&lt;img border='1' align='right' height='<xsl:value-of select="$iconheight"/>'src='<xsl:value-of select="$quicklookRequest"/>'/&gt;
-             	<xsl:apply-templates select="wms:Attribution | Attribution" mode="html"/>
-             	&lt;br/&gt;
-             	This resource is available from a OGC WMS <xsl:value-of select="$version"/> Service 
-             	&lt;ul&gt;
-             	&lt;li&gt;
-             	&lt;a href='<xsl:value-of select="$wmsRequest"/>'&gt;
-             	GetMap &lt;/a&gt; request in <xsl:value-of select="$format"/>
-             	&lt;a href='<xsl:value-of select="$GETCAPABILITIESonlineResource"/>VERSION=<xsl:value-of select="$version"/>&amp;REQUEST=GetCapabilities'&gt;
-             	&lt;/li&gt;
-             	&lt;li&gt;
-             	GetCapabilities &lt;/a&gt; request.
-             	&lt;/li&gt;
-             	<xsl:apply-templates select="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL" mode="html"/>
-             	&lt;/ul&gt;
-             	&lt;p style='font-size:small'&gt;OGC Context CITE Testing XSLT (Extensible Stylesheet Language Transformations) by Terradue Srl.&lt;/p&gt;
-         </content>
+	<content type='html'>
+        &lt;br/&gt;
+	&lt;img border='1' align='right' height='<xsl:value-of select="$iconheight"/>'src='<xsl:value-of select="$quicklookRequest"/>'/&gt;
+	<xsl:apply-templates select="wms:Attribution | Attribution" mode="html"/>
+	&lt;br/&gt;
+	This resource is available from a OGC WMS <xsl:value-of select="$version"/> Service 
+	&lt;ul&gt;
+	&lt;li&gt;
+	&lt;a href='<xsl:value-of select="$wmsRequest"/>'&gt;
+	GetMap &lt;/a&gt; request in <xsl:value-of select="$format"/>
+	&lt;a href='<xsl:value-of select="$GETCAPABILITIESonlineResource"/>VERSION=<xsl:value-of select="$version"/>&amp;REQUEST=GetCapabilities'&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	GetCapabilities &lt;/a&gt; request.
+	&lt;/li&gt;<xsl:apply-templates select="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL" mode="html"/>
+	&lt;/ul&gt;
+	<xsl:value-of select="wms:Abstract | Abstract"/>
+	&lt;p style='font-size:small'&gt;OGC Context CITE Testing XSLT (Extensible Stylesheet Language Transformations) by Terradue Srl.&lt;/p&gt;
+	</content>
          
 	 <owc:ServiceOffering type="http://www.opengis.net/spec/OWC/1.0/req/wms">
 	 	<owc:Operation name="GetMap">
@@ -354,16 +356,6 @@
 </xsl:template>        
 
 
-<xsl:template match="wms:Attribution | Attribution" mode="html">
-&lt;b&gt;&lt;a href='<xsl:value-of select="(wms:OnlineResource | OnlineResource )/@xlink:href"/>'&gt;<xsl:value-of select="wms:Title | Title"/>&lt;/a&gt;&lt;/b&gt;
-
-<xsl:apply-templates select="wms:LogoURL | LogoURL" mode="html"/>
-</xsl:template>
-
-<xsl:template match="wms:LogoURL | LogoURL" mode="html">
-&lt;img src='<xsl:value-of select="(wms:OnlineResource | OnlineResource )/@xlink:href"/>' hspace='20' align='left' width='<xsl:value-of select="@width"/>' height='<xsl:value-of select="@height"/>'&gt;
-</xsl:template>
-
 <xsl:template match="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL">
 	<xsl:if test="wms:Format | Format != ''">
 	<xsl:if test="substring-after(wms:Format | Format,'/')='' or substring-after(wms:Format | Format,' ')!=''">
@@ -388,15 +380,6 @@
 </xsl:template>
 
 
-<xsl:template match="wms:DataURL | DataURL | wms:MetadataURL | MetadataURL" mode="html">
-	&lt;li&gt;
-	<xsl:value-of select="local-name()"/> is available &lt;a href='<xsl:value-of select="wms:OnlineResource/@xlink:href | OnlineResource/@xlink:href"/>'&gt;
-	<xsl:if test="@wms:type | @type != ''">  <xsl:value-of select="@wms:type | @type"/> - </xsl:if>
-	<xsl:if test="wms:Format | Format != ''"> <xsl:value-of select="wms:Format | Format"/></xsl:if>
-	&lt;/a&gt;
-	&lt;/li&gt;
-</xsl:template>
-
 
 
 <xsl:template match="wms:ContactInformation | ContactInformation">
@@ -405,6 +388,8 @@
         <email><xsl:value-of select="wms:ContactElectronicMailAddress | ContactElectronicMailAddress"/></email>
       </author>
 </xsl:template>
+
+
 
 
 </xsl:stylesheet>
