@@ -1,0 +1,26 @@
+#! /bin/sh
+echo ":: trax owc MERIS example ::" >&2
+echo "        :: owc -> wms  ::" >&2
+
+PID=$$
+file="../examples/meris_borders.atom"
+bbox="-2,45,8,55"
+title="Satellite Image and Countries borders over France and England"
+id="https://github.com/Terradue/trax/tree/master/owc/bin/$file/"
+subtitle="Two WMS layers from different servers giving an operational setting"
+
+./owc-wms -u "http://ows.genesi-dec.eu/geoserver/385d7d71-650a-414b-b8c7-739e2c0b5e76/wms?service=WMS&version=1.1.0&request=GetCapabilities" -l "385d7d71-650a-414b-b8c7-739e2c0b5e76:MER_RR__2PRLRA20120406_102429_000026213113_00238_52838_0211.N1.tif" -b "-2,45,8,55" -m "fragment"> ../examples/tmp1.$PID
+./owc-wms -u "http://nsidc.org/cgi-bin/atlas_north?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities" -l "country_borders"  -b "$bbox" -m "fragment" > ../examples/tmp2.$PID
+
+./build-head "$title" "$id" "$subtitle" > $file
+
+echo "<entry>" >> $file
+tail -n +3 ../examples/tmp1.$PID >> $file
+echo "<entry>" >> $file
+tail -n +3 ../examples/tmp2.$PID >> $file
+echo "</feed>" >> $file
+
+rm ../examples/tmp1.$PID
+rm ../examples/tmp2.$PID
+
+echo ":: trax owc examples completed ::"  >&2
