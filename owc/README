@@ -7,21 +7,20 @@ Data Cleansing, Validators, Stylesheet transformations for OWS Context Documents
 This set of xslt files map different web services to an ATOM feed compatible with the 
 OpenGIS Web Context specification 1.0.0
 
-	Copyright 2011-2012 Terradue srl
-        This product includes software developed by
-        Terradue srl (http://www.terradue.com/).
-        
         
 Tools available:
 
 	owc-wms-list <getCapabilities url> 
-		Lists the layers available on a OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents 
+		Lists the layers available on a OGC WMS (1.1.1 and 1.3.0) GetCapabilities
+		documents 
 		
 	owc-wms <getCapabilities url> [layer name] [mode]
 		
-		Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0.
+		Transform OGC WMS (1.1.1 and 1.3.0) GetCapabilities documents in OGC 
+		Context Document in ATOM encoding version 1.0.
 		It maps the service to a feed and assumes all named layers are entries
 		
 		mode : The processing mode (Optional) 
        			if equal to 'feed' it will produce a valid ATOM feed (default).
-       			If equal to 'fragment' it will only produce the entry of a layer. It must be used with the layer parameter.
+       			If equal to 'fragment' it will only produce the entry of a layer 
+       			  (It must be used with the layer parameter).
