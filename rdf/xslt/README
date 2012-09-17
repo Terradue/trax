@@ -1,0 +1,10 @@
+- rdf trax -
+       
+  Transformation files for dclite4g documents.
+	
+  	- These XSLT files transform the output of RDF stores to simpler formats 
+  	  for the development of specialized transient services 
+  
+  	- It creates RDF store from known geospatial services and datastores 
+  
+   
