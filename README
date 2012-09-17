@@ -5,7 +5,3 @@ terradue/trax
 This project presents a set of transient services to perform data cleansing, validate feeds and perform transformations.
 It focus on geo-spatial data and OGC Services.
 
-
-	Copyright 2011-2012 Terradue srl
-        This product includes software developed by
-        Terradue srl (http://www.terradue.com/).
