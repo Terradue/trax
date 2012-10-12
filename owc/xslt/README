@@ -9,8 +9,12 @@
 	Currently it supports:
 		- Web Map Specification (WMS) 1.1.1 and 1.3.0
 		- Web Feature Specification (WFS) 1.1.0 
-	
-	
+
+	TODO List:
+		- add WCS support 
+		- add WPS support 
+		- add CSW support 
+			
 	It maps the service to a feed and assumes all named items (layers or 
 	features) are entries
 	
