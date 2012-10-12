@@ -46,3 +46,7 @@
 	xsltproc --stringparam entry "topp:member_map" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" --stringparam fragment "false" ows2owc.xsl 'http://meet.opengeospatial.org:8080/geoserver/ows?service=WFS&request=GetCapabilities' 
 	
 
+	Acknowledgements:
+		- Roger Brackin (Envitia PLC) for co-editing the OWC specification
+		- Joan Mas— (CREAF) for WFS inputs, comments and support 
+	
