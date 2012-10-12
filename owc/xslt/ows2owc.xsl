@@ -102,6 +102,7 @@ Copyright 2012 Terradue Srl.
 	</xsl:otherwise>
 </xsl:choose>    
 </xsl:variable>
+
 <xsl:variable name="coords" select="exsl:node-set($_coords)"/>
 
 <xsl:variable name="version" select="/*/@version"/>
@@ -221,7 +222,7 @@ Copyright 2012 Terradue Srl.
 		  <gml:exterior>
 		    <gml:LinearRing>
 		      <gml:posList>
-		      <xsl:value-of select="concat($coords/item[2],' ',$coords/item[1],' ',$coords/item[2],' ',$coords/item[3],' ',$coords/item[4],' ',$coords/item[3],' ',$coords/item[4],' ',$coords/item[1],' ',$coords/item[2],' ',$coords/item[1])"/>
+		      <xsl:value-of select="concat($coords/*[2],' ',$coords/*[1],' ',$coords/*[2],' ',$coords/*[3],' ',$coords/*[4],' ',$coords/*[3],' ',$coords/*[4],' ',$coords/*[1],' ',$coords/*[2],' ',$coords/*[1])"/>
 		      </gml:posList>
 		     </gml:LinearRing>
 		  </gml:exterior>
@@ -269,7 +270,7 @@ Copyright 2012 Terradue Srl.
 <entry>
 	<xsl:variable name="maxX">
 	<xsl:choose>
-		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[3]"/></xsl:when>
+		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/*[3]"/></xsl:when>
 		<xsl:when test="ows:WGS84BoundingBox/ows:UpperCorner">
 			<xsl:value-of select="substring-before(ows:WGS84BoundingBox/ows:UpperCorner,' ')"/>
 		</xsl:when>
@@ -280,7 +281,7 @@ Copyright 2012 Terradue Srl.
 	</xsl:variable>
 	<xsl:variable name="maxY">
 	<xsl:choose>
-		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[4]"/></xsl:when>
+		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/*[4]"/></xsl:when>
 		<xsl:when test="ows:WGS84BoundingBox/ows:UpperCorner">
 			<xsl:value-of select="substring-after(ows:WGS84BoundingBox/ows:UpperCorner,' ')"/>
 		</xsl:when>
@@ -289,7 +290,7 @@ Copyright 2012 Terradue Srl.
 	</xsl:variable>
 	<xsl:variable name="minX">
 	<xsl:choose>
-		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[1]"/></xsl:when>
+		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/*[1]"/></xsl:when>
 		<xsl:when test="ows:WGS84BoundingBox/ows:LowerCorner">
 			<xsl:value-of select="substring-before(ows:WGS84BoundingBox/ows:LowerCorner,' ')"/>
 		</xsl:when>
@@ -298,7 +299,7 @@ Copyright 2012 Terradue Srl.
 	</xsl:variable>
         <xsl:variable name="minY">
     	<xsl:choose>
-		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/item[2]"/></xsl:when>
+		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/*[2]"/></xsl:when>
 		<xsl:when test="ows:WGS84BoundingBox/ows:LowerCorner">
 			<xsl:value-of select="substring-after(ows:WGS84BoundingBox/ows:LowerCorner,' ')"/>
 		</xsl:when>
@@ -547,5 +548,24 @@ Copyright 2012 Terradue Srl.
 	&lt;/li&gt;</xsl:template>
 
 
+<xsl:template name="tokenize">
+        <xsl:param name="text" select="."/>
+        <xsl:param name="separator" select="','"/>
+        <xsl:choose>
+            <xsl:when test="not(contains($text, $separator))">
+                <item>
+                    <xsl:value-of select="normalize-space($text)"/>
+                </item>
+            </xsl:when>
+            <xsl:otherwise>
+                <item>
+                    <xsl:value-of select="normalize-space(substring-before($text, $separator))"/>
+                </item>
+                <xsl:call-template name="tokenize">
+                    <xsl:with-param name="text" select="substring-after($text, $separator)"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+</xsl:template>
 
 </xsl:stylesheet>
