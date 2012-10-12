@@ -1,6 +1,0 @@
-#! /bin/sh
-layer=$1
-url=$2
-echo "Building $layer ... "
-./owc-wms $1 $2 > ../examples/$1.atom 
-
