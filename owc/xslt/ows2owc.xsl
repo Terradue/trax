@@ -457,7 +457,7 @@ Copyright 2012 Terradue Srl.
 	 <owc:offering>
 	 	<xsl:attribute name="code"><xsl:value-of select="$offering_code"/></xsl:attribute>
 		<owc:operation method="GET" code="GetCapabilities">
-			<xsl:attribute name="href"><xsl:value-of select="$get_capabilities_request"/>VERSION=1.3.0&amp;REQUEST=GetCapabilities</xsl:attribute>
+			<xsl:attribute name="href"><xsl:value-of select="$get_capabilities_request"/></xsl:attribute>
 		</owc:operation>
 		<owc:operation method="GET">
 			<xsl:attribute name="code"><xsl:value-of select="$default_operation"/></xsl:attribute>
