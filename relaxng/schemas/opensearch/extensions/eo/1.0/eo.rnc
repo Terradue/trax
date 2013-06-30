@@ -1,0 +1,37 @@
+# -*- rnc -*-
+   # RELAX NG Compact Syntax Grammar 
+   # OpenSearch Description Document as defined in OGC 13-026 for eo extension
+
+namespace eo = "http://a9.com/-/opensearch/extensions/eo/1.0/"
+ 
+ osQueryAttr &= attribute eo:platform { text }? & attribute eo:orbitType { text }? 
+    & attribute eo:instrument { text }? & attribute eo:sensorType  { text }? 
+    & attribute eo:sensorMode {text}? & attribute eo:resolution {floatValueOrSetOrRange}? 
+    & attribute eo:swathId {text}? & attribute eo:wavelength {intValueOrSetOrRange }? 
+    & attribute eo:spectralRange {text}? 
+    & attribute eo:orbitNumber {intValueOrSetOrRange}? 
+    & attribute eo:orbitDirection { orbitDirection }? 
+    & attribute eo:track { intValueOrSetOrRange }? 
+    & attribute eo:frame { intValueOrSetOrRange }? 
+    & attribute eo:identifier { text }? & attribute eo:type { text }? 
+    & attribute eo:acquisitionType { text }? & attribute eo:status { text }? 
+    & attribute eo:archivingCenter { text }? 
+    & attribute eo:archivingDate { dateValueOrSetOrRange }? 
+    & attribute eo:acquisitionStation { text }? & attribute eo:processingCenter { text }? 
+    & attribute eo:processingSoftware { text }?
+    & attribute eo:processingDate { dateValueOrSetOrRange }?
+    & attribute eo:processingLevel { text }? & attribute eo:compositeType { text }? 
+    & attribute eo:contents {text}? & attribute eo:cloudCover {floatValueOrSetOrRange} *
+    & attribute eo:snowCover {floatValueOrSetOrRange} *       
+    
+orbitDirection = "DESCENDING" | "ASCENDING"
+   
+# Ranges value|\{value(,value)*\}|[\]\[\(\)]value,value[\]\[\(\)]
+
+intValueOrSetOrRange = xsd:string { pattern ="[\+\-]?[\d]*|\{[\+\-]?[\d]*(,[\d]*)*\}|[\]\[\(\)]?[\+\-]?[\d]*,[\+\-]?[\d]*[\]\[\(\)]?" } 
+
+floatValueOrSetOrRange = xsd:string { pattern ="[\+\-]?[\d]*(.[\d]+)?|\{[\+\-]?[\d]*(.[\d]+)?(,[\+\-]?[\d]*(.[\d]+)?)*\}|[\]\[\(\)]?[\+\-]?[\d]*(.[\d]+)?,[\+\-]?[\d]*(.[\d]+)?[\]\[\(\)]?" } 
+
+dateValueOrSetOrRange = xsd:string { pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[\+\-][0-9]{2}:[0-9]{2}))?|\{[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[\+\-][0-9]{2}:[0-9]{2}))?(,[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[\+\-][0-9]{2}:[0-9]{2}))?)*\}|[\]\[\(\)][0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[\+\-][0-9]{2}:[0-9]{2}))?,[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[\+\-][0-9]{2}:[0-9]{2}))?[\]\[\(\)]"}
+
+    

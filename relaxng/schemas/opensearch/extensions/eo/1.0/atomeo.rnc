@@ -1,0 +1,90 @@
+# -*- rnc -*-
+   # RELAX NG Compact Syntax Grammar for 
+   # ATOM encoding and foreign elements as defined in OGC 13-026 
+   # for the eo extension
+   
+namespace s = "http://purl.oclc.org/dsdl/schematron"
+namespace atom = "http://www.w3.org/2005/Atom"
+namespace os = "http://a9.com/-/spec/opensearch/1.1/"
+namespace eo = "http://a9.com/-/opensearch/extensions/eo/1.0/"
+namespace eop = "http://www.opengis.net/eop/2.0"
+namespace opt = "http://www.opengis.net/opt/2.0"
+namespace sar = "http://www.opengis.net/sar/2.0"
+namespace atm = "http://www.opengis.net/atm/2.0"
+namespace alt = "http://www.opengis.net/alt/2.0"
+namespace lmb = "http://www.opengis.net/lmb/2.0"
+namespace ssp = "http://www.opengis.net/ssp/2.0"
+namespace local = ""
+
+                     
+# Redefine atom:entry to include the Earth Observation element defined 
+# in OGC 10-157 
+atomEntryConstruct &= eopElements ?
+
+eopElements =  eopElement | optElement | sarElement | atmElement | altElement 
+               | lmgElement | sspElement
+
+eopElement = element eop:EarthObservation { anyChildren }
+optElement = element opt:EarthObservation { anyChildren }
+sarElement = element sar:EarthObservation { anyChildren }
+atmElement = element atm:EarthObservation { anyChildren }
+altElement = element alt:EarthObservation { anyChildren }
+lmgElement = element lmb:EarthObservation { anyChildren }
+sspElement = element ssp:EarthObservation { anyChildren }
+
+anyChildren =  undefinedAttribute*, extensionElement* 
+
+include "eo.rnc"
+
+# Replacing definitions on RFC4287 plus OpenSearch 
+include "../../../1.1/osatom.rnc"{
+
+      undefinedAttribute = attribute * - (xml:base | xml:lang | local:* | eo:* ) { text }
+       
+      # Redefine the Simple Extension to exclude owc:* elements
+      simpleExtensionElement = element * - 
+          (atom:* | os:* | eop:EarthObservation | opt:EarthObservation | sar:EarthObservation |
+           atm:EarthObservation | alt:EarthObservation | lmb:EarthObservation | 
+           ssp:EarthObservation) { text }
+
+      # Redefine the Structured Extension to exclude owc:* elements
+      structuredExtensionElement = element * - 
+          (atom:* |  eop:EarthObservation | opt:EarthObservation | sar:EarthObservation |
+           atm:EarthObservation | alt:EarthObservation | lmb:EarthObservation | 
+           ssp:EarthObservation | os:* ) {
+             (attribute * { text }+,(text|anyElement)*)
+           | (attribute * { text }*, (text?, anyElement+, (text|anyElement)*))} 
+
+      # Redefine Atom rules    
+      atomFeed = [
+       s:rule [ context = "atom:feed"
+         s:assert [ test = "atom:author or not(atom:entry[not(atom:author)])"
+           "An atom:feed must have an atom:author unless all "
+           ~ "of its atom:entry children have an atom:author."]]
+       ]
+       element atom:feed { atomFeedConstruct }     
+       
+      atomEntry =[
+       s:rule [ context = "atom:entry"
+         s:assert [ test = "atom:content"
+          "An atom:entry must have one atom:content MUST have content "
+          ~ "element in a format understandable by generic Atom readers"
+          ~ " ( @type equal to 'html' is recommended)"]]
+	 
+       s:rule [ context = "atom:entry"
+	      s:assert [ test = "atom:link[@rel='alternate'] "
+            ~ "or atom:link[not(@rel)] or atom:content"
+            "An atom:entry must have at least one atom:link element "
+            ~ "with a rel attribute of 'alternate' or an atom:content."]]
+            
+       s:rule [ context = "atom:entry"
+         s:assert [ test = "atom:author or "
+	       ~ "../atom:author or atom:source/atom:author"
+	       "An atom:entry must have an atom:author "
+	       ~ "if its feed does not."]]
+	       
+       ]
+      element atom:entry { atomEntryConstruct } 
+}
+# EOF
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:eo="http://a9.com/-/opensearch/extensions/eo/1.0/"
+                       xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/">
+   <ShortName>Web Search</ShortName>
+   <Description>Use Example.com to search the Web.</Description>
+   <Tags>example web</Tags>
+   <Contact>admin@example.com</Contact>
+   <Url type="application/atom+xml" template="http://example.com/?q={searchTerms}&amp;bbox={geo:box?}&amp;orbit={eop:orbitNumber?}&amp;acqstation={eo:acquisitionStation?}&amp;pw={startPage?}&amp;format=atom"/>
+   <Url type="text/html" template="http://example.com/?q={searchTerms}&amp;bbox={geo:box?}&amp;orbit={eo:orbitNumber?}&amp;acqstation={eo:acquisitionStation?}&amp;pw={startPage?}"/>
+   <LongName>Example.com Web Search</LongName>
+   <Image height="64" width="64" type="image/png">http://example.com/websearch.png</Image>
+   <Developer>Example.com Development Team</Developer>
+   <SyndicationRight>open</SyndicationRight>
+   <AdultContent>false</AdultContent>
+   <Language>en-us</Language>
+   <OutputEncoding>UTF-8</OutputEncoding>
+   <InputEncoding>UTF-8</InputEncoding>
+ </OpenSearchDescription>

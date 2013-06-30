@@ -1,0 +1,33 @@
+# -*- rnc -*-
+   # RELAX NG Compact Syntax Grammar for 
+   # OpenSearch Description Parameter Extension
+
+namespace param = "http://a9.com/-/opensearch/extensions/param/1.0/"
+
+osDocumentConstruct &= element param:Parameter { parameterConstruct } *
+
+parameterConstruct =  attribute name { xsd:token }?, 
+					  attribute value { xsd:token }?,
+					  attribute minimum { xsd:unsignedInt }?,
+					  attribute maximum { xsd:unsignedInt }?,
+					  attribute pattern { text }?,
+					  attribute title {  xsd:string { maxLength = "1024" } }?,
+					  attribute minExclusive { xsd:decimal | xsd:dateTime }?, 
+					  attribute maxExclusive { xsd:decimal | xsd:dateTime }?,
+					  attribute minInclusive { xsd:decimal | xsd:dateTime }?,
+					  attribute maxInclusive { xsd:decimal | xsd:dateTime }?,
+					  attribute step { xsd:decimal }?,
+					  undefinedAttribute*,
+					  element param:Option { paramOption }*
+
+
+paramOption = attribute value { xsd:string }, 
+               attribute label { xsd:string }, undefinedAttribute*
+
+osdUrl &= attribute param:method { paramMethod }? 
+            & attribute param:enctype {  xsd:string { pattern = ".+/.+" } }?
+          
+paramMethod = "OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT"
+
+
+# EOF
