@@ -29,7 +29,7 @@ include "../../../1.1/osatom.rnc"{
       simpleExtensionElement = element * - 
           (atom:* |  georss:* | os:* | dc:identifier ) { text }
 
-      # Redefine the Structured Extension to exclude owc:* elements
+      # Redefine the Structured Extension to exclude atom geo elements
       structuredExtensionElement = element * - 
           (atom:* |  georss:* | os:* | dc:identifier ) {
              (attribute * { text }+,(text|anyElement)*)
