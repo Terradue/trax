@@ -1,0 +1,23 @@
+trax/relaxng 
+
+= XML validation with RELAX-NG Compact Syntax and ISO Schematron =
+
+2013 Terradue srl
+The rncv script joins trang and jing java packages with xsl files to support 
+complete RELAX-NG Compact Sytnax with ISO schematron rule validation.
+It updates and corrects the extract SCH from RNG iso-schematron-xslt1 package (from http://www.schematron.com/ ) and also the modified schematron skeleton code by David 
+Carlisle.
+    http://dpcarlisle.blogspot.com/search/label/schematron
+(that transforms sch files in xsl)
+
+
+It needs jing-trang, please download it from 
+https://code.google.com/p/jing-trang/
+
+
+The rncv package includes updated RELAX-NG Compact Syntax schemas for ATOM 
+(new ISO Schematron support and easier extensibility), OpenSearch Description
+ Documents and ATOM Encoding.
+It includes also some of the OpenSearch extensions currently available or under 
+development.
+
