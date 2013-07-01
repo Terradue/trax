@@ -3,6 +3,7 @@ trax/relaxng/rncv
 = XML validation with RELAX-NG Compact Syntax and ISO Schematron =
 2013 Terradue srl
 
+
 usage:
   rncv.sh  -s <schema_file_name.rnc> 
           [-t <trang_file_name.jar] 
@@ -16,5 +17,6 @@ examples :
       sh rncv.sh -s ../schemas/opensearch/1.1/osatom.rnc -f "../examples/atom/atomeo01.xml ../examples/atom/atomeo01_noauthor.xml" 
     use patterns to define multiple files to validate 
       sh rncv.sh -s ../schemas/opensearch/1.1/osatom.rnc -f "../examples/atom/atomeo*.xml" 
-
+    using curl as input file 
+      curl 'https://api.echo.nasa.gov/opensearch/granules.atom?clientId=&shortName=MERIS_L1B_RR&versionId=1&dataCenter=OBPG' | sh rncv.sh -s ../schemas/atom/2005/rfc4287.rnc 
 

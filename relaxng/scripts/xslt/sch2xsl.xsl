@@ -3,7 +3,7 @@
 <!-- sch2xsl
 	Modified schematron skeleton code by Pedro Goncalves.
 	The changes allow the direct use of this xsl with sch extracted from a RNG 
-	file. 
+	file. Improved error messages and includes the element path on the doc.
 	
 	The modified sections of code are the work of Pedro Goncalves (Terradue Srl.)
 	and are distributed under the same license of the original file.
@@ -1690,14 +1690,24 @@ here
 	<xsl:template name="process-message">
 		<xsl:param name="pattern" />
         <xsl:param name="role" />
-        <xsl:apply-templates mode="text"/>	
+Element: <axsl:for-each select="ancestor-or-self::*">
+				<axsl:choose>
+				   <axsl:when test="(count(../*[name()=name(current())])=1)"><axsl:value-of select="name()"/></axsl:when>
+				   <axsl:otherwise><axsl:value-of select="concat(name(),'[',count(preceding-sibling::*[name() = name(current())])+1,']')"/></axsl:otherwise>
+				</axsl:choose>
+                <axsl:if test="position() != last()">
+                    <axsl:text>/</axsl:text>
+                </axsl:if>
+        </axsl:for-each>
 rule = <xsl:value-of select="$pattern"/> 
+<axsl:value-of  select="string('&#10;')"/>
+        <xsl:apply-templates mode="text"/>	
 		 <xsl:if test=" $message-newline = 'true'" >
-			<axsl:value-of  select="string('&#10;')"/><axsl:value-of  select="string('&#10;')"/>
+			<axsl:value-of  select="string('&#10;')"/>
 			
 		</xsl:if>
 		
-	</xsl:template>
+	</xsl:template>	
 </xsl:stylesheet>
 
 
