@@ -17,7 +17,7 @@ xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" >
   <georss:where><gml:Polygon><gml:exterior><gml:LinearRing>
       <gml:posList>39.9 125 43.5 125 43.5 132.7 39.9 132.7 39.9 132.7</gml:posList>
   </gml:LinearRing></gml:exterior></gml:Polygon></georss:where>
-    <author><name>GEOSS Supersites</name></author>
+  <author><name>GEOSS Supersites</name></author>
   <entry>
     <id>http://eo-virtual-archive4.esa.int/search/ASA_IM__0P/ASA_IM__0CNPDE20100122_014441_000000162086_00146_41282_7918.N1/atom</id>
     <title>ASA_IM__0CNPDE20100122_014441_000000162086_00146_41282_7918.N1</title>
