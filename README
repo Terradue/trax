@@ -1,7 +1,7 @@
-trax components 
+Terradue trax components 
 
-= Data cleansing, validators and transformations  =
+= Data casting, validators and transformations  =
 
 This project presents a set of transient services to perform data cleansing, validate feeds and perform transformations.
-It focus on geo-spatial data and OGC Services.
+It focuses on geo-spatial data and OGC Services.
 
