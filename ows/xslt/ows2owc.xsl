@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!---
 
-Copyright 2012 Terradue Srl.
+Copyright 2013 Terradue Srl.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ Copyright 2012 Terradue Srl.
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:georss="http://www.georss.org/georss"
 	xmlns:gml="http://www.opengis.net/gml"
-	xmlns:owc="http://www.opengis.net/owc/1.0/" 
+	xmlns:owc="http://www.opengis.net/owc/1.0" 
 	xmlns:ows="http://www.opengis.net/ows" 
 	xmlns:wfs="http://www.opengis.net/wfs"
 	xmlns:wms="http://www.opengis.net/wms"
@@ -42,21 +42,21 @@ Copyright 2012 Terradue Srl.
 	>
 	
 	
-<xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="no"/>
+<xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes" omit-xml-declaration="yes"/>
 <xsl:variable name="default_icon_height" select="'100'"/>
 <xsl:variable name="default_map_height" select="'500'"/>
 
 <xsl:variable name='_help'>
        - OWS2OWC -
        
-       Copyright 2011-2012 Terradue srl
+       Copyright 2011-2013 Terradue srl
        This product includes software developed by
        Terradue srl (http://www.terradue.com/).
        
        Transform OGC Web Services GetCapabilities documents in OGC Context Document in ATOM encoding version 1.0.
        Currently it supports:
                 - Web Map Specification (WMS) 1.1.1 and 1.3.0
-                - Web Feature Specification (WFS) 1.1.0 
+                - Web Feature Specification (WFS) 1.0.0 and 1.1.0 
        
        
        It maps the service to a feed and assumes all named items (layers or features) are entries
@@ -74,7 +74,8 @@ Copyright 2012 Terradue Srl.
        			if equal to 'feed' it will produce a valid ATOM feed (default).
        			If equal to 'fragment' it will only produce the entry with the feature or layer. It must be used with the entry parameter.
        			If equal to 'help' it will display this message.
-       			
+       			If equal to 'fragment-url' it will only produce the entry URLS with the feature or layer request. It must be used with the entry parameter.
+       			If equal to 'list' it will show all the entries available on the OGC GetCapabilities documents.
        		
        	Example:
        	xsltproc --stringparam layer "sea_ice_extent_01" --stringparam now "`date +%Y-%m-%dT%H:%M:%S`" --stringparam fragment "true" ows2owc.xsl 'http://nsidc.org/cgi-bin/atlas_south?SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetCapabilities'
@@ -126,13 +127,15 @@ Copyright 2012 Terradue Srl.
 </xsl:variable>
 
 
-
-
-<xsl:variable name="capabilities_online_resource" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href | /*/ows:OperationsMetadata/ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
+<xsl:variable name="capabilities_online_resource" select="/wfs:WFS_Capabilities/wfs:Capability/wfs:Request/wfs:GetCapabilities/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource | /wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetCapabilities/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href | /*/ows:OperationsMetadata/ows:Operation[@name='GetCapabilities']/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
 <xsl:variable name="capabilities_format" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetCapabilities/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetCapabilities/Format[1] | /*/ows:OperationsMetadata/ows:Operation[@name='GetCapabilities']/ows:Parameter[@name='AcceptFormats']/ows:Value[1]"/>
 
-<xsl:variable name="operation_online_resource" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource/@xlink:href | /*/ows:OperationsMetadata/ows:Operation[@name=$default_operation]/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
-<xsl:variable name="data_format" select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetMap/Format[1] | /*/ows:OperationsMetadata/ows:Operation[@name=$default_operation]/ows:Parameter[@name='outputFormat']/ows:Value[1]"/>
+<xsl:variable name="operation_online_resource" select="/wfs:WFS_Capabilities/wfs:Capability/wfs:Request/wfs:GetFeature/wfs:DCPType/wfs:HTTP/wfs:Get/@onlineResource | /wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:DCPType/wms:HTTP/wms:Get/wms:OnlineResource/@xlink:href | /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource/@xlink:href | /*/ows:OperationsMetadata/ows:Operation[@name=$default_operation]/ows:DCP/ows:HTTP/ows:Get/@xlink:href"/>
+<xsl:variable name="data_format"><xsl:choose>
+<xsl:when test="/wfs:WFS_Capabilities/wfs:Capability/wfs:Request/wfs:GetFeature/wfs:ResultFormat"><xsl:choose><xsl:when test="wfs:WFS_Capabilities/wfs:Capability/wfs:Request/wfs:GetFeature/wfs:ResultFormat/*[name()='_GML3']">GML3</xsl:when><xsl:otherwise><xsl:value-of select="name(/wfs:WFS_Capabilities/wfs:Capability/wfs:Request/wfs:GetFeature/wfs:ResultFormat/*[1])"/></xsl:otherwise></xsl:choose></xsl:when>
+<xsl:otherwise><xsl:value-of select="/wms:WMS_Capabilities/wms:Capability/wms:Request/wms:GetMap/wms:Format[1] | /WMT_MS_Capabilities/Capability/Request/GetMap/Format[1] | /*/ows:OperationsMetadata/ows:Operation[@name=$default_operation]/ows:Parameter[@name='outputFormat']/ows:Value[1]"/></xsl:otherwise>
+</xsl:choose></xsl:variable>
+
 <xsl:variable name="exception_format" select="/wms:WMS_Capabilities/wms:Capability/wms:Exception/wms:Format[1] | /WMT_MS_Capabilities/Capability/Exception/Format[1]"/>
 
 <xsl:variable name="service_online_resoure" select="$capabilities_online_resource"/>
@@ -165,12 +168,12 @@ Copyright 2012 Terradue Srl.
         <xsl:value-of select="$_help"/>
       </xsl:message>
 </xsl:when>
-<xsl:when test="$mode='fragment' and $entry!=''">
+<xsl:when test="($mode='fragment' or $mode='fragment-url') and $entry!=''">
 	<xsl:apply-templates select="//wms:Layer[wms:Name=$entry] | //Layer[Name=$entry] | //wfs:FeatureType[wfs:Name=$entry]"/>
 </xsl:when>
 <xsl:when test="$mode='list'">
-	<xsl:for-each  select="//wms:Layer[wms:Name!=''] | //Layer[Name!='']">
-<xsl:value-of select="wms:Name | Name"/>
+	<xsl:for-each  select="//wms:Layer[wms:Name!=''] | //Layer[Name!=''] | //wfs:FeatureType ">
+<xsl:value-of select="wms:Name | Name | wfs:Name"/>
 <xsl:text>
 </xsl:text>
 	</xsl:for-each>
@@ -183,8 +186,9 @@ Copyright 2012 Terradue Srl.
 
 
 <xsl:template match="wfs:WFS_Capabilities | wms:WMS_Capabilities | WMT_MS_Capabilities">
-
-
+<xsl:value-of disable-output-escaping="yes" select="'&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;'"/> 
+<xsl:text>
+</xsl:text>
 <feed xml:lang='en'>
 
       <category scheme="http://www.opengis.net/spec/owc/specReference" 
@@ -254,7 +258,7 @@ Copyright 2012 Terradue Srl.
     
      <xsl:choose>
 	<xsl:when test="$entry!=''">
-		<xsl:apply-templates select="//wms:Layer[wms:Name=$entry] | //Layer[Name=$entry] | wfs:FeatureTypeList/wfs:FeatureType[wfs:Name=$entry]"/>
+		<xsl:apply-templates select="(//wms:Layer[wms:Name=$entry])[1] | (//Layer[Name=$entry])[1] | (wfs:FeatureTypeList/wfs:FeatureType[wfs:Name=$entry])[1]"/>
 	</xsl:when>
 	<xsl:otherwise>
 		<xsl:apply-templates select="//wms:Layer[wms:Name!=''] | //Layer[Name!=''] | wfs:FeatureTypeList/wfs:FeatureType"/>
@@ -267,7 +271,10 @@ Copyright 2012 Terradue Srl.
 
 
 <xsl:template match="wms:Layer | Layer | wfs:FeatureType">
-<entry>
+<!---
+	<xsl:copy-of select="(ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox) | (ancestor-or-self::Layer/LatLonBoundingBox) | (ancestor-or-self::wfs:FeatureType/wfs:LatLongBoundingBox)"/>
+	<xsl:message terminate="yes"/>
+-->
 	<xsl:variable name="maxX">
 	<xsl:choose>
 		<xsl:when test="$bbox!=''"><xsl:value-of select="$coords/*[3]"/></xsl:when>
@@ -275,7 +282,7 @@ Copyright 2012 Terradue Srl.
 			<xsl:value-of select="substring-before(ows:WGS84BoundingBox/ows:UpperCorner,' ')"/>
 		</xsl:when>
 		<xsl:otherwise>
-		    <xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:eastBoundLongitude | ancestor-or-self::Layer/LatLonBoundingBox/@maxx"/>
+		    <xsl:value-of select="(ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox)[last()]/wms:eastBoundLongitude | (ancestor-or-self::Layer/LatLonBoundingBox)[last()]/@maxx | (ancestor-or-self::wfs:FeatureType/wfs:LatLongBoundingBox)[last()]/@maxx "/>
 		</xsl:otherwise>
 	</xsl:choose>
 	</xsl:variable>
@@ -285,7 +292,7 @@ Copyright 2012 Terradue Srl.
 		<xsl:when test="ows:WGS84BoundingBox/ows:UpperCorner">
 			<xsl:value-of select="substring-after(ows:WGS84BoundingBox/ows:UpperCorner,' ')"/>
 		</xsl:when>
-		<xsl:otherwise><xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:northBoundLatitude | ancestor-or-self::Layer/LatLonBoundingBox/@maxy"/></xsl:otherwise>
+		<xsl:otherwise><xsl:value-of select="(ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox)[last()]/wms:northBoundLatitude | (ancestor-or-self::Layer/LatLonBoundingBox)[last()]/@maxy | (ancestor-or-self::wfs:FeatureType/wfs:LatLongBoundingBox)[last()]/@maxy"/></xsl:otherwise>
 	</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="minX">
@@ -294,7 +301,7 @@ Copyright 2012 Terradue Srl.
 		<xsl:when test="ows:WGS84BoundingBox/ows:LowerCorner">
 			<xsl:value-of select="substring-before(ows:WGS84BoundingBox/ows:LowerCorner,' ')"/>
 		</xsl:when>
-		<xsl:otherwise><xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:westBoundLongitude | ancestor-or-self::Layer/LatLonBoundingBox/@minx"/></xsl:otherwise>
+		<xsl:otherwise><xsl:value-of select="(ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox)[last()]/wms:westBoundLongitude | (ancestor-or-self::Layer/LatLonBoundingBox)[last()]/@minx | (ancestor-or-self::wfs:FeatureType/wfs:LatLongBoundingBox)[last()]/@minx"/></xsl:otherwise>
 	</xsl:choose>
 	</xsl:variable>
         <xsl:variable name="minY">
@@ -303,10 +310,63 @@ Copyright 2012 Terradue Srl.
 		<xsl:when test="ows:WGS84BoundingBox/ows:LowerCorner">
 			<xsl:value-of select="substring-after(ows:WGS84BoundingBox/ows:LowerCorner,' ')"/>
 		</xsl:when>
-		<xsl:otherwise><xsl:value-of select="ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox/wms:southBoundLatitude | ancestor-or-self::Layer/LatLonBoundingBox/@miny"/></xsl:otherwise>
+		<xsl:otherwise><xsl:value-of select="(ancestor-or-self::wms:Layer/wms:EX_GeographicBoundingBox)[last()]/wms:southBoundLatitude | (ancestor-or-self::Layer/LatLonBoundingBox)[last()]/@miny | (ancestor-or-self::wfs:FeatureType/wfs:LatLongBoundingBox)[last()]/@miny"/></xsl:otherwise>
+	</xsl:choose>
+	</xsl:variable>
+	<xsl:variable name="georatio" select="translate((number($maxX) - number($minX) ) div ( number($maxY) - number($minY) ),'-','' ) "/>
+	
+	<xsl:variable name="name" select="wms:Name | Name | wfs:Name"/>
+	
+	<xsl:variable name="crsName" select="local-name(wms:CRS[1] | SRS[1])"/>
+	
+	<!-- preference for Plate Carre on element -->
+	<!-- if no crs available then check parent --> 
+	<xsl:variable name="crs">
+	<xsl:choose>
+		<xsl:when test="count(wms:CRS[.='EPSG:4326'] | SRS[.='EPSG:4326'])!=0">EPSG:4326</xsl:when>
+		<xsl:when test="count(wms:CRS[.='CRS:84'] | SRS[.='CRS:84'])!=0">CRS:84</xsl:when>
+		<xsl:when test="count(wms:CRS[1] | SRS[1])!=0"><xsl:value-of select="wms:CRS[1] | SRS[1]"/></xsl:when>
+		<xsl:when test="count(ancestor::wms:Layer/wms:CRS[.='EPSG:4326'] | ancestor::Layer/SRS[.='EPSG:4326'])!=0">EPSG:4326</xsl:when>
+		<xsl:when test="count(ancestor::wms:Layer/wms:CRS[.='CRS:84'] | ancestor::Layer/SRS[.='CRS:84'])!=0">CRS:84</xsl:when>
+		<xsl:otherwise><xsl:value-of select="ancestor::wms:Layer/wms:CRS[1] | ancestor::Layer/SRS[1]"/></xsl:otherwise>
+	</xsl:choose>
+	</xsl:variable>
+
+	<xsl:variable name="bbox">
+	<xsl:choose>
+	<xsl:when test="($service_name='WMS' and $version='1.3.0' and $crs='EPSG:4326') or (/wfs:WFS_Capabilities and $version!='1.0.0') ">
+		<xsl:value-of select="concat($minY,',',$minX,',',$maxY,',',$maxX)"/></xsl:when>
+	<xsl:otherwise>
+		<xsl:value-of select="concat($minX,',',$minY,',',$maxX,',',$maxY)"/>
+	</xsl:otherwise>
 	</xsl:choose>
 	</xsl:variable>
 	
+	<xsl:variable name="style" select="wms:Style[1]/wms:Name | Style[1]/Name"/>
+
+	<xsl:variable name="get_request">
+		<xsl:value-of select="$operation_online_resource"/><xsl:if test="substring-before($operation_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('&amp;SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=',$default_operation,'&amp;BBOX=',$bbox)"/><xsl:choose>
+			<xsl:when test="$service_name='WFS'"><xsl:value-of select="concat('&amp;OUTPUTFORMAT=',$data_format,'&amp;TYPENAME=',$name,'&amp;MAXFEATURES=10')"/>
+			</xsl:when>
+			<xsl:when test="$service_name='WMS'"><xsl:value-of select="concat( '&amp;',$crsName, '=',$crs,'&amp;WIDTH=',floor($map_height * $georatio),'&amp;HEIGHT=',$map_height,'&amp;LAYERS=',$name,'&amp;FORMAT=',$data_format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$exception_format)"/>
+			</xsl:when>
+			<xsl:otherwise/>
+		</xsl:choose>
+	</xsl:variable>
+	
+	<xsl:variable name="get_capabilities_request"><xsl:value-of select="$capabilities_online_resource"/><xsl:if test="substring-before($capabilities_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('&amp;SERVICE=',$service_name,'&amp;VERSION=',$version,'&amp;REQUEST=GetCapabilities')"/></xsl:variable>	
+	<xsl:variable name="quicklook_request" select="concat($operation_online_resource,'&amp;SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($icon_height * $georatio),'&amp;HEIGHT=',$icon_height,'&amp;LAYERS=',$name,'&amp;STYLES=',$style,'&amp;FORMAT=',$data_format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$exception_format)"/>		
+	<xsl:variable name="describedby_request"><xsl:value-of select="$operation_online_resource"/><xsl:if test="substring-before($operation_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('&amp;SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=describeFeatureType&amp;TYPENAME=',$name,'')"/></xsl:variable>	
+
+<xsl:choose>
+<xsl:when test="$mode='fragment-url'">
+<xsl:value-of disable-output-escaping="yes" select="$get_capabilities_request"/> 
+<xsl:text>
+</xsl:text>
+<xsl:value-of disable-output-escaping="yes" select="$get_request"/> 
+</xsl:when>
+<xsl:otherwise>
+<entry>	
 	<!--
 	todo: get geo names of selections
 	<xsl:value-of select="concat('http://eo-virtual-archive4.esa.int/search/geo/rdf?geometry=POLYGON((',$minX,' ',$minY,',',$minX,' ',$maxY,',',$maxX,' ',$maxY,',',$maxX,' ',$minY,',',$minX,' ',$minY,'))')"/>
@@ -345,57 +405,12 @@ Copyright 2012 Terradue Srl.
 		</gml:Polygon>
 	</georss:where>	
 	
-	<xsl:variable name="georatio" select="translate((number($maxX) - number($minX) ) div ( number($maxY) - number($minY) ),'-','' ) "/>
-	
-	<xsl:variable name="name" select="wms:Name | Name | wfs:Name"/>
-	
-	<xsl:variable name="crsName" select="local-name(wms:CRS[1] | SRS[1])"/>
-	
-	<!-- preference for Plate Carre on element -->
-	<!-- if no crs available then check parent --> 
-	<xsl:variable name="crs">
-	<xsl:choose>
-		<xsl:when test="count(wms:CRS[.='EPSG:4326'] | SRS[.='EPSG:4326'])!=0">EPSG:4326</xsl:when>
-		<xsl:when test="count(wms:CRS[.='CRS:84'] | SRS[.='CRS:84'])!=0">CRS:84</xsl:when>
-		<xsl:when test="count(wms:CRS[1] | SRS[1])!=0"><xsl:value-of select="wms:CRS[1] | SRS[1]"/></xsl:when>
-		<xsl:when test="count(ancestor::wms:Layer/wms:CRS[.='EPSG:4326'] | ancestor::Layer/SRS[.='EPSG:4326'])!=0">EPSG:4326</xsl:when>
-		<xsl:when test="count(ancestor::wms:Layer/wms:CRS[.='CRS:84'] | ancestor::Layer/SRS[.='CRS:84'])!=0">CRS:84</xsl:when>
-		<xsl:otherwise><xsl:value-of select="ancestor::wms:Layer/wms:CRS[1] | ancestor::Layer/SRS[1]"/></xsl:otherwise>
-	</xsl:choose>
-	</xsl:variable>
-
-	<xsl:variable name="bbox">
-	<xsl:choose>
-	<xsl:when test="($service_name='WMS' and $version='1.3.0' and $crs='EPSG:4326') or /wfs:WFS_Capabilities">
-		<xsl:value-of select="concat($minY,',',$minX,',',$maxY,',',$maxX)"/></xsl:when>
-	<xsl:otherwise>
-		<xsl:value-of select="concat($minX,',',$minY,',',$maxX,',',$maxY)"/>
-	</xsl:otherwise>
-	</xsl:choose>
-	</xsl:variable>
-	
-	<xsl:variable name="style" select="wms:Style[1]/wms:Name | Style[1]/Name"/>
-
-	<xsl:variable name="get_request">
-		<xsl:value-of select="$operation_online_resource"/><xsl:if test="substring-before($operation_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=',$default_operation,'&amp;BBOX=',$bbox)"/><xsl:choose>
-			<xsl:when test="$service_name='WFS'"><xsl:value-of select="concat('&amp;OUTPUTFORMAT=',$data_format,'&amp;TYPENAME=',$name,'&amp;MAXFEATURES=10')"/>
-			</xsl:when>
-			<xsl:when test="$service_name='WMS'"><xsl:value-of select="concat( $crsName, '=',$crs,'&amp;WIDTH=',floor($map_height * $georatio),'&amp;HEIGHT=',$map_height,'&amp;LAYERS=',$name,'&amp;FORMAT=',$data_format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$exception_format)"/>
-			</xsl:when>
-			<xsl:otherwise/>
-		</xsl:choose>
-	</xsl:variable>
-	
-	<xsl:variable name="get_capabilities_request"><xsl:value-of select="$capabilities_online_resource"/><xsl:if test="substring-before($capabilities_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('SERVICE=',$service_name,'&amp;VERSION=',$version,'&amp;REQUEST=GetCapabilities')"/></xsl:variable>	
-	
 	<link rel='enclosure'>
 		<xsl:attribute name="type"><xsl:value-of select="$data_format"/></xsl:attribute>
 		<xsl:attribute name="title"><xsl:value-of select="concat($service_name,' output for ', wfs:Title | wms:Title | Title )"/></xsl:attribute>
 		<xsl:attribute name="href"><xsl:value-of select="$get_request"/></xsl:attribute>
 	</link>
-	
-	<xsl:variable name="quicklook_request" select="concat($operation_online_resource,'SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=GetMap&amp;', $crsName, '=',$crs,'&amp;BBOX=',$bbox,'&amp;WIDTH=',floor($icon_height * $georatio),'&amp;HEIGHT=',$icon_height,'&amp;LAYERS=',$name,'&amp;STYLES=',$style,'&amp;FORMAT=',$data_format,'&amp;BGCOLOR=0xffffff&amp;TRANSPARENT=TRUE&amp;EXCEPTIONS=',$exception_format)"/>		
-		
+			
 	<xsl:if test="$service_name='WMS'">
 		<link rel='icon'>
 			<xsl:attribute name="type"><xsl:value-of select="$data_format"/></xsl:attribute>
@@ -404,7 +419,6 @@ Copyright 2012 Terradue Srl.
 		</link>
 	</xsl:if>
 
-	<xsl:variable name="describedby_request"><xsl:value-of select="$operation_online_resource"/><xsl:if test="substring-before($operation_online_resource,'?')=''">?</xsl:if><xsl:value-of select="concat('SERVICE=',$service_name, '&amp;VERSION=',$version,'&amp;REQUEST=describeFeatureType&amp;TYPENAME=',$name,'')"/></xsl:variable>	
 	
 	<xsl:if test="$service_name='WFS'">
 		<link rel='describedby'>
@@ -417,7 +431,7 @@ Copyright 2012 Terradue Srl.
 	
 	
 	<link rel='via'>
-        	<xsl:attribute name="type"><xsl:value-of select="$capabilities_format"/></xsl:attribute>
+        <xsl:attribute name="type"><xsl:value-of select="$capabilities_format"/></xsl:attribute>
 		<xsl:attribute name="title">Original GetCapabilities document</xsl:attribute>
 		<xsl:attribute name="href">
 			<xsl:value-of select="$get_capabilities_request"/>        
@@ -462,6 +476,19 @@ Copyright 2012 Terradue Srl.
 		<owc:operation method="GET">
 			<xsl:attribute name="code"><xsl:value-of select="$default_operation"/></xsl:attribute>
 			<xsl:attribute name="href"><xsl:value-of select="$get_request"/></xsl:attribute>
+			<xsl:if test="$service_name='WFS'">
+			<owc:result>
+			<xsl:attribute name="type">
+			<xsl:choose>
+				<xsl:when test="($version='1.0.0' and $data_format='GML2') or ($data_format='text/xml; subtype=gml/2.1.2')">application/gml+xml; version=2</xsl:when>
+				<xsl:when test="($version='1.0.0' and $data_format='GML3') or ($data_format='text/xml; subtype=gml/3.1.1')">application/gml+xml; version=3.1</xsl:when>
+				<xsl:when test="($version='1.0.0' and $data_format='JSON') or ($data_format='application/json')">application/json</xsl:when>
+				<xsl:otherwise><xsl:value-of select="$data_format"/></xsl:otherwise>
+			</xsl:choose>
+			</xsl:attribute><ola>sdsd</ola>
+			<xsl:copy-of select="document(translate($get_request,' ','+'))"/>
+			</owc:result>
+			</xsl:if>
 		</owc:operation>
 		   
 		<xsl:for-each select="wms:Style | Style">
@@ -476,8 +503,9 @@ Copyright 2012 Terradue Srl.
 		</owc:styleSet>		
 		</xsl:for-each>
 	</owc:offering>
-	
 </entry>
+</xsl:otherwise>
+</xsl:choose>
 </xsl:template>
 
 <xsl:template match="ows:ServiceIdentification/ows:Abstract | wms:Service/wms:Abstract | Service/Abstract">

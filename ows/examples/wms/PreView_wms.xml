@@ -1,0 +1,1520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WMS_Capabilities 
+
+xmlns="http://www.opengis.net/wms"
+	xmlns:srv="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd" 
+	xmlns:gmd="http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd" 
+	xmlns:gco="http://schemas.opengis.net/iso/19139/20060504/gco/gco.xsd" 
+	xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" 
+	xmlns:gml="http://schemas.opengis.net/gml" 
+	xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	version="1.3.0" updateSequence="767" >
+	
+  <Service>
+    <Name>WMS</Name>
+    <Title>enviroSDI Web Map Service</Title>
+    <Abstract>enviroSDI is the Spatial Data Infrastructure of the UNEP/DEWA/GRID-Europe (http://www.grid.unep.ch).&#13;
+A compliant implementation of WMS 1.1.1 plus most of the SLD 1.0 extension (dynamic styling).</Abstract>
+    <KeywordList>
+
+      <Keyword>enviroSDI</Keyword>
+      <Keyword>UNEP</Keyword>
+      <Keyword>GRID</Keyword>
+      <Keyword>EUROPE</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>GEOSERVER</Keyword>
+
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="http://www.grid.unep.ch/data/SDI/"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson>Gregory Giuliani</ContactPerson>
+        <ContactOrganization>UNEP/DEWA/GRID-Geneva</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition>SDI coordinator</ContactPosition>
+
+      <ContactAddress>
+        <AddressType/>
+        <Address>11, chemin des Anemones</Address>
+        <City>Chatelaine</City>
+        <StateOrProvince>Geneva</StateOrProvince>
+        <PostCode>1219</PostCode>
+        <Country>Switzerland</Country>
+
+      </ContactAddress>
+      <ContactVoiceTelephone>+41 22 917 84 17</ContactVoiceTelephone>
+      <ContactFacsimileTelephone/>
+      <ContactElectronicMailAddress>gregory.giuliani@unepgrid.ch</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>NONE</Fees>
+    <AccessConstraints>NONE</AccessConstraints>
+
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+
+              <OnlineResource xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+
+        <Format>image/png</Format>
+        <Format>application/atom+xml</Format>
+        <Format>application/pdf</Format>
+        <Format>application/vnd.google-earth.kml+xml</Format>
+        <Format>application/vnd.google-earth.kmz</Format>
+        <Format>image/gif</Format>
+
+        <Format>image/jpeg</Format>
+        <Format>image/svg+xml</Format>
+        <Format>image/tiff</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?SERVICE=WMS&amp;"/>
+
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/html</Format>
+
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+    </Exception>
+    <inspire_vs:ExtendedCapabilities>
+      <inspire_common:MetadataUrl xsi:type="inspire_common:resourceLocatorType">
+
+        <inspire_common:URL>http://geonetwork.grid.unep.ch</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages xsi:type="inspire_common:supportedLanguagesType">
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>eng</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+
+        <inspire_common:SupportedLanguage>
+          <inspire_common:Language>eng</inspire_common:Language>
+        </inspire_common:SupportedLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>eng</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+
+    <Layer>
+      <Title>enviroSDI Web Map Service</Title>
+      <Abstract>enviroSDI is the Spatial Data Infrastructure of the UNEP/DEWA/GRID-Europe (http://www.grid.unep.ch).&#13;
+A compliant implementation of WMS 1.1.1 plus most of the SLD 1.0 extension (dynamic styling).</Abstract>
+      <CRS>EPSG:3785</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>EPSG:4326</CRS>
+
+      <CRS>EPSG:900913</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>-181.0</westBoundLongitude>
+        <eastBoundLongitude>193.05</eastBoundLongitude>
+        <southBoundLatitude>-90.0</southBoundLatitude>
+
+        <northBoundLatitude>90.0</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <Layer queryable="1">
+        <Name>preview:cs_ecoexp</Name>
+        <Title>Cyclones surges economical exposure</Title>
+        <Abstract>This dataset includes an estimation of the annual economical exposition to surges from tropical cyclones of Saffir-Simpson category 1. It is based on four sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A Digital Elevation Model (SRTM) at 90 m of resolution. 4) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+
+          <Keyword>WCS</Keyword>
+          <Keyword>cs_ecoexp</Keyword>
+          <Keyword>cs_ecoexp</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+          <northBoundLatitude>85.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-58.0" miny="-180.0" maxx="85.0" maxy="180.0"/>
+
+        <Style>
+          <Name>cs_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cs_ecoexp"/>
+
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cs_events</Name>
+        <Title>Cyclones surges events</Title>
+        <Abstract>This dataset includes a compilation of estimated storm surges triggered by tropical cyclones 1975-2007. It is based on three sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A Digital Elevation Model (SRTM). This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: Compilation and GIS processing UNEP/GRID-Europe.</Abstract>
+
+        <KeywordList>
+          <Keyword>surges</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>events</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-52.594</southBoundLatitude>
+          <northBoundLatitude>60.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-52.594" miny="-180.0" maxx="60.0" maxy="180.0"/>
+
+        <Style>
+          <Name>cs_events_style</Name>
+          <Title>Cyclones surges events</Title>
+          <Abstract>Cyclones surges events from 1976 to 2006</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cs_events"/>
+
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cs_frequency</Name>
+        <Title>Cyclones surges frequency</Title>
+        <Abstract>This dataset includes an estimate of surges triggered by tropical cyclone frequency of Saffir-Simpson category 1. It is based on three sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A Digital Elevation Model (SRTM). Unit is expected average number of event per 1000 years. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>surges</Keyword>
+          <Keyword>frequency</Keyword>
+          <Keyword>GAR</Keyword>
+
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-52.592</southBoundLatitude>
+          <northBoundLatitude>60.008</northBoundLatitude>
+
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-179.892" miny="-183.6" maxx="187.308" maxy="183.6"/>
+        <Style>
+          <Name>cs_frequency_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cs_frequency"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cs_physexp</Name>
+        <Title>Cyclones surges physical exposure</Title>
+
+        <Abstract>This dataset includes an estimation of the annual physical exposition to surges from tropical cyclones of Saffir-Simpson category 1. It is based on four sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A Digital Elevation Model (SRTM) at 90 m of resolution. 4) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>WCS</Keyword>
+          <Keyword>cs_physexp</Keyword>
+          <Keyword>cs_physexp</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+          <northBoundLatitude>84.0</northBoundLatitude>
+
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>cs_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cs_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_buffers</Name>
+        <Title>Cyclones events</Title>
+
+        <Abstract>This dataset includes a compilation of estimated tropical cyclones windspeed (Saffir-Simpson categories) buffers 1975-2007. It is based on two sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: Compilation and GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>events</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>cyclones</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-69.434</southBoundLatitude>
+          <northBoundLatitude>70.648</northBoundLatitude>
+
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-69.434" miny="-180.0" maxx="70.648" maxy="180.0"/>
+        <Style>
+          <Name>cy_buffers_style</Name>
+          <Title>Cyclones events</Title>
+          <Abstract>Cyclones events from 1975 to 2007</Abstract>
+          <LegendURL width="20" height="20">
+
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_buffers"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_ecoexp</Name>
+        <Title>Cyclones economical exposure</Title>
+
+        <Abstract>This dataset includes an estimation of the annual economical exposition to tropical cyclones of Saffir-Simpson category 5. It is based on three sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>economical</Keyword>
+          <Keyword>exposure</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.002</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+
+          <northBoundLatitude>85.003</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-170.1" miny="-183.6" maxx="197.103" maxy="183.602"/>
+        <Style>
+          <Name>cy_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_frequency</Name>
+
+        <Title>Cyclones frequency</Title>
+        <Abstract>This dataset includes an estimate of tropical cyclone frequency of Saffir-Simpson category 5. It is based on two sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time Unit is expected average number of event per 1000 years. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>179.989</eastBoundLongitude>
+          <southBoundLatitude>-56.0</southBoundLatitude>
+
+          <northBoundLatitude>84.011</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-169.589" miny="-183.6" maxx="197.6" maxy="183.589"/>
+        <Style>
+          <Name>cy_frequency_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_frequency"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_intensity</Name>
+
+        <Title>Cyclones intensity</Title>
+        <Abstract>This dataset includes a footprint of estimated tropical cyclones windspeed (Saffir-Simpson categories) buffers 1975-2007. It is based on two sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. Unit is estimated Saffir-Simpson categories. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: Compilation and GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>intensity</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.006</eastBoundLongitude>
+          <southBoundLatitude>-56.0</southBoundLatitude>
+
+          <northBoundLatitude>83.994</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-56.0" miny="-180.0" maxx="83.994" maxy="180.006"/>
+        <Style>
+          <Name>cy_intensity_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_intensity"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_physexp</Name>
+
+        <Title>Cyclones physical exposure</Title>
+        <Abstract>This dataset includes an estimation of the annual physical exposition to tropical cyclones of Saffir-Simpson category 5. It is based on three sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. 3) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>physical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>cy_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_risk</Name>
+
+        <Title>Cyclones risk</Title>
+        <Abstract>This dataset includes an estimate of the global risk induced by tropical cyclone hazard. Unit is estimated risk index from 1 (not null) to 10 (extreme). This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>risk</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>cy_risk_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_risk"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_sumwinds</Name>
+
+        <Title>Cyclones sum of winds</Title>
+        <Abstract>This dataset includes an estimated annual sum of tropical cyclones windspeed 1975-2007. It is based on two sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time. Unit is km/h x h. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: Compilation and GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Cyclones</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>sum</Keyword>
+
+          <Keyword>winds</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.023</eastBoundLongitude>
+          <southBoundLatitude>-69.434</southBoundLatitude>
+
+          <northBoundLatitude>84.004</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-176.327" miny="-183.6" maxx="190.897" maxy="183.623"/>
+        <Style>
+          <Name>cy_sumwinds_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_sumwinds"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:cy_tracks</Name>
+
+        <Title>Cyclones tracks</Title>
+        <Abstract>This dataset includes a compilation Tropical cyclones best tracks 1975-2007. It is based on two sources: 1) A compilation of best tracks dataset from WMO Regional Specialised Meteorological Centres (RSMCs) and Tropical Cyclone Warning Centres (TCWCs). As well as personal communication with Dr. Varigonda Subrahmanyam, Dr. James Weyman, Kiichi Sasaki, Philippe CAROFF, Jim Davidson, Simon Mc Gree, Steve Ready, Peter Kreft, Henrike Brecht. 2) A GIS modeling based on an initial equation from Greg Holland, which was further modified to take into consideration the movement of the cyclones through time This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: Compilation and GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>cyclones</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>tracks</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-68.5</southBoundLatitude>
+
+          <northBoundLatitude>70.7</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-68.5" miny="-180.0" maxx="70.7" maxy="180.0"/>
+        <Style>
+          <Name>cy_tracks</Name>
+          <Title>Cyclones tracks</Title>
+          <Abstract>Cyclones events from 1975 to 2007</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=cy_tracks"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:dr_cv</Name>
+
+        <Title>Droughts frequency (Coefficient of variation)</Title>
+        <Abstract>This dataset includes an estimate of the Coefficient of variation. It is based on two sources: 1) A global monthly gridded precipitation dataset obtained from the Global Precipitation Climatology Center (GPCC). 2) A GIS modeling of global Standardized Precipitation Index based on Mckee et al. (1993) methodology. Unit is CV index multiplied x 100. This product was designed by IRI and CIESIN (Columbia University) for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: IRI and CIESIN (Columbia University).</Abstract>
+        <KeywordList>
+          <Keyword>WCS</Keyword>
+          <Keyword>dr_cv</Keyword>
+          <Keyword>dr_cv</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-60.5</southBoundLatitude>
+
+          <northBoundLatitude>75.5</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-60.5" miny="-180.0" maxx="75.5" maxy="180.0"/>
+        <Style>
+          <Name>dr_cv_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=dr_cv"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:dr_ecoexp</Name>
+
+        <Title>Droughts economical exposure</Title>
+        <Abstract>This dataset includes an estimate of global drought annual repartition based on Standardized Precipitation Index. It is based on three sources: 1) A global monthly gridded precipitation dataset obtained from the Climatic Research Unit (University of East Anglia). 2) A GIS modeling of global Standardized Precipitation Index based on Brad Lyon (IRI, Columbia University) methodology. 3) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>WCS</Keyword>
+          <Keyword>dr_ecoexp</Keyword>
+          <Keyword>dr_ecoexp</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+
+          <northBoundLatitude>85.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-58.0" miny="-180.0" maxx="85.0" maxy="180.0"/>
+        <Style>
+          <Name>dr_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=dr_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:dr_events</Name>
+
+        <Title>Droughts events</Title>
+        <Abstract>This dataset includes an estimate of global drought annual repartition based on Standardized Precipitation Index. It is based on two sources: 1) A global monthly gridded precipitation dataset obtained from the Climatic Research Unit (University of East Anglia). 2) A GIS modeling of global Standardized Precipitation Index based on Brad Lyon (IRI, Columbia University) methodology. This product was designed by UNEP/GRID-Europe for the Project of Risk Evaluation, Vulnerability, Information &amp; Early Warning (PreView). It was modeled using global data. Credit: UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>events</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>droughts</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-178.869</westBoundLongitude>
+          <eastBoundLongitude>178.5</eastBoundLongitude>
+          <southBoundLatitude>-55.5</southBoundLatitude>
+
+          <northBoundLatitude>82.877</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-55.5" miny="-178.869" maxx="82.877" maxy="178.5"/>
+        <Style>
+          <Name>dr_events_style</Name>
+          <Title>Droughts events</Title>
+          <Abstract>Droughts events from 1997 to 2007</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=dr_events"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:dr_physexp</Name>
+
+        <Title>Droughts physical exposure</Title>
+        <Abstract>This dataset includes an estimate of global drought annual repartition based on Standardized Precipitation Index. It is based on three sources: 1) A global monthly gridded precipitation dataset obtained from the Climatic Research Unit (University of East Anglia). 2) A GIS modeling of global Standardized Precipitation Index based on Brad Lyon (IRI, Columbia University) methodology. 3) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>WCS</Keyword>
+          <Keyword>dr_physexp</Keyword>
+          <Keyword>dr_physexp</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>dr_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=dr_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:eq_ecoexp</Name>
+
+        <Title>Earthquakes economical exposure</Title>
+        <Abstract>This dataset includes an estimate the annual economical exposition to earthquakes of MMI categories higher than 9 over the period 1973-2007. It is based on two data sources: 1) Modified Mercalli Intensity map available in the Shakemap Atlas from USGS. 2) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was compiled by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing Shakemap Atlas from USGS, compilation and global hazard distribution UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Earthquakes</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>economical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+
+          <northBoundLatitude>85.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-170.1" miny="-183.6" maxx="197.1" maxy="183.6"/>
+        <Style>
+          <Name>eq_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=eq_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:eq_frequency</Name>
+
+        <Title>Earthquakes  MMI</Title>
+        <Abstract>This dataset includes an estimate of earthquake frequency of MMI categories higher than 9 over the period 1973-2007. It is based on Modified Mercalli Intensity map available in the Shakemap Atlas from USGS. Unit is expected average number of events per 1000 years. This product was compiled by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing Shakemap Atlas from USGS, compilation and global hazard distribution UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Earthquakes</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>MMI</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-167.05</westBoundLongitude>
+          <eastBoundLongitude>193.05</eastBoundLongitude>
+          <southBoundLatitude>-62.05</southBoundLatitude>
+
+          <northBoundLatitude>87.05</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-62.05" miny="-167.05" maxx="87.05" maxy="193.05"/>
+        <Style>
+          <Name>eq_frequency_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=eq_frequency"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:eq_frequency3</Name>
+
+        <Title>Earthquakes  frequency</Title>
+        <Abstract>This dataset includes an estimate of earthquake frequency of MMI categories higher than 9 over the period 1973-2007. It is based on Modified Mercalli Intensity map available in the Shakemap Atlas from USGS. Unit is expected average number of events per 1000 years. This product was compiled by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing Shakemap Atlas from USGS, compilation and global hazard distribution UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Earthquakes</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.002</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.01</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.01" maxy="180.002"/>
+        <Style>
+          <Name>eq_frequency3_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=eq_frequency3"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:eq_intensity</Name>
+
+        <Title>Earthquakes  intensity</Title>
+        <Abstract>This dataset includes an estimate of the footprint of earthquake Modified Mercalli Intensity Shakemaps over the period 1973-2007. It is based on Modified Mercalli Intensity map available in the Shakemap Atlas from USGS. Unit is simulated Modified Mercalli Index categories used within the GAR project. This product was compiled by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR), from the Shakemap Atlas (USGS). It was modeled using global data. Credit: GIS processing Shakemap Atlas from USGS, compilation and global hazard distribution UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Earthquakes</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>intensity</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.002</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.01</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-186.596" miny="-183.6" maxx="180.606" maxy="183.602"/>
+        <Style>
+          <Name>eq_intensity_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=eq_intensity"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:eq_physexp</Name>
+
+        <Title>Earthquakes  physical exposure</Title>
+        <Abstract>This dataset includes an estimate the annual physical exposition to earthquake frequency of MMI categories higher than 9 over the period 1973-2007. It is based on two data sources: 1) Modified Mercalli Intensity map available in the Shakemap Atlas from USGS. 2) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was compiled by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing Shakemap Atlas from USGS, compilation and global hazard distribution UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Earthquakes</Keyword>
+          <Keyword>physical</Keyword>
+          <Keyword>exposure</Keyword>
+
+          <Keyword>Preview</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>eq_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=eq_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:fi_average</Name>
+
+        <Title>Fires density</Title>
+        <Abstract>This dataset includes an estimate of fires density over the period 1997-2008. It is based on the modified algorithm 1 product of World Fire atlas (WFA, ESA-ESRIN) dataset. UNEP/GRID-Europe compiled the monthly data and processed the global fire density. Unit is expected average number of event per 0.1 decimal degree pixel per year. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing World Fire atlas (ESA-ESRIN), Fire density UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Fires</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>density</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-179.944</westBoundLongitude>
+          <eastBoundLongitude>180.256</eastBoundLongitude>
+          <southBoundLatitude>-78.193</southBoundLatitude>
+
+          <northBoundLatitude>78.607</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-183.495" miny="-183.546" maxx="183.909" maxy="183.858"/>
+        <Style>
+          <Name>fi_average_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=fi_average"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:fl_ecoexp</Name>
+
+        <Title>Floods economical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual economical exposition to flood. It is based on four sources: 1) A GIS modeling using a statistical estimation of peak-flow magnitude and a hydrological model using HydroSHEDS dataset and the Manning equation to estimate river stage for the calculated discharge value. 2) Observed flood from 1999 to 2007, obtained from the Dartmouth Flood Observatory (DFO). 3) The frequency was set using the frequency from UNEP/GRID-Europe PREVIEW flood dataset. In area where no information was available, it was set to 50 years returning period. 4) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe, with key support from USGS EROS Data Center, Dartmouth Flood Observatory 2008.</Abstract>
+        <KeywordList>
+          <Keyword>Floods</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>economical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>85.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="85.0" maxy="180.0"/>
+        <Style>
+          <Name>fl_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=fl_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:fl_frequency</Name>
+
+        <Title>Floods frequency</Title>
+        <Abstract>This dataset includes an estimate of flood frequency. It is based on three sources: 1) A GIS modeling using a statistical estimation of peak-flow magnitude and a hydrological model using HydroSHEDS dataset and the Manning equation to estimate river stage for the calculated discharge value. 2) Observed flood from 1999 to 2007, obtained from the Dartmouth Flood Observatory (DFO). 3) The frequency was set using the frequency from UNEP/GRID-Europe PREVIEW flood dataset. In area where no information was available, it was set to 50 years returning period. Unit is expected average number of event per 100 years. This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe, with key support from USGS EROS Data Center, Dartmouth Flood Observatory 2008.</Abstract>
+        <KeywordList>
+          <Keyword>Floods</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>fl_frequency_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=fl_frequency"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:fl_physexp</Name>
+
+        <Title>Floods physical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual physical exposition to flood. It is based on four sources: 1) A GIS modeling using a statistical estimation of peak-flow magnitude and a hydrological model using HydroSHEDS dataset and the Manning equation to estimate river stage for the calculated discharge value. 2) Observed flood from 1999 to 2007, obtained from the Dartmouth Flood Observatory (DFO). 3) The frequency was set using the frequency from UNEP/GRID-Europe PREVIEW flood dataset. In area where no information was available, it was set to 50 years returning period. 4) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing UNEP/GRID-Europe, with key support from USGS EROS Data Center, Dartmouth Flood Observatory 2008.</Abstract>
+        <KeywordList>
+          <Keyword>Floods</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>physical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.0" maxy="180.0"/>
+        <Style>
+          <Name>fl_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=fl_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:fl_risk</Name>
+
+        <Title>Floods risk</Title>
+        <Abstract>This dataset includes an estimate of the global risk induced by flood hazard. Unit is estimated risk index from 1 (not null) to 10 (extreme). This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Floods</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>risk</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-181.0</westBoundLongitude>
+          <eastBoundLongitude>181.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-187.62" miny="-184.62" maxx="181.62" maxy="184.62"/>
+        <Style>
+          <Name>fl_risk_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=fl_risk"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_ecoexp</Name>
+
+        <Title>Landslides earthquakes economical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual economical exposition of landslide triggered by earthquakes. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. A Global Domestic Product grid for the year 2007, provided by the World Bank, has also been used. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent). This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>economical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+          <Keyword>earthquakes</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+
+          <southBoundLatitude>-58.0</southBoundLatitude>
+          <northBoundLatitude>89.992</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-58.0" miny="-180.0" maxx="89.992" maxy="180.0"/>
+        <Style>
+          <Name>ls_ecoexp_style</Name>
+          <Title>Raster</Title>
+
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+
+        <Name>preview:ls_ecoexp2</Name>
+        <Title>Landslides precipitations economical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual economical exposition of landslide triggered by precipitations. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. A Global Domestic Product grid for the year 2007, provided by the World Bank, has also been used. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent). This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+          <Keyword>Preview</Keyword>
+
+          <Keyword>economical</Keyword>
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+
+          <Keyword>GRU</Keyword>
+          <Keyword>precipitations</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+          <northBoundLatitude>89.992</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-58.0" miny="-180.0" maxx="89.992" maxy="180.0"/>
+        <Style>
+          <Name>ls_ecoexp2_style</Name>
+
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_ecoexp2"/>
+          </LegendURL>
+        </Style>
+
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_eq</Name>
+        <Title>Landslides earthquakes frequency</Title>
+        <Abstract>This dataset includes an estimate of the annual frequency of landslide triggered by earthquakes. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. Unit is expected annual probability and percentage of pixel of occurrence of a potentially destructive landslide event x 1000000. This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+
+          <Keyword>GRU</Keyword>
+          <Keyword>earthquakes</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+
+          <eastBoundLongitude>179.992</eastBoundLongitude>
+          <southBoundLatitude>-56.013</southBoundLatitude>
+          <northBoundLatitude>89.995</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-56.013" miny="-180.0" maxx="89.995" maxy="179.992"/>
+        <Style>
+          <Name>ls_eq_style</Name>
+
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_eq"/>
+          </LegendURL>
+        </Style>
+
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_physexp</Name>
+        <Title>Landslides earthquakes physical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual physical exposition of landslide triggered by earthquakes. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory) has also been used. Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+
+          <Keyword>Preview</Keyword>
+          <Keyword>physical</Keyword>
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+          <Keyword>earthquakes</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+          <northBoundLatitude>89.992</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="89.992" maxy="180.0"/>
+
+        <Style>
+          <Name>ls_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_physexp"/>
+
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_physexp2</Name>
+        <Title>Landslides precipitations physical exposure</Title>
+        <Abstract>This dataset includes an estimate of the annual physical exposition of landslide triggered by precipitations. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory) has also been used. Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>physical</Keyword>
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+          <Keyword>precipitations</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>89.992</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="89.992" maxy="180.0"/>
+        <Style>
+          <Name>ls_physexp2_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_physexp2"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_pr</Name>
+
+        <Title>Landslides precipitations frequency</Title>
+        <Abstract>This dataset includes an estimate of the annual frequency of landslide triggered by precipitations. It depends on the combination of trigger and susceptibility defined by six parameters: slope factor, lithological (or geological) conditions, soil moisture condition, vegetation cover, precipitation and seismic conditions. Unit is expected annual probability and percentage of pixel of occurrence of a potentially destructive landslide event x 1000000. This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+          <Keyword>precipitations</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>179.992</eastBoundLongitude>
+          <southBoundLatitude>-56.013</southBoundLatitude>
+
+          <northBoundLatitude>89.995</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-56.013" miny="-180.0" maxx="89.995" maxy="179.992"/>
+        <Style>
+          <Name>ls_pr_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_pr"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ls_risk</Name>
+
+        <Title>Landslides risk</Title>
+        <Abstract>This dataset includes an estimate of the global risk induced by tropical cyclone hazard. Unit is estimated risk index from 1 (not null) to 10 (extreme). This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>Landslides</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>risk</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-181.0</westBoundLongitude>
+          <eastBoundLongitude>181.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>90.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-181.0" maxx="90.0" maxy="181.0"/>
+        <Style>
+          <Name>ls_risk_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ls_risk"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ml_risk</Name>
+
+        <Title>Multiple risk</Title>
+        <Abstract>This dataset includes an estimate of the global risk induced by multiple hazards (tropical cyclone, earthquake, flood and landslide induced by precipitations). Unit is estimated risk index from 1 (not null) to 10 (extreme). This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: UNEP/GRID-Europe.</Abstract>
+        <KeywordList>
+          <Keyword>WCS</Keyword>
+          <Keyword>ml_risk</Keyword>
+          <Keyword>ml_risk</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-181.0</westBoundLongitude>
+          <eastBoundLongitude>181.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>90.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-181.0" maxx="90.0" maxy="181.0"/>
+        <Style>
+          <Name>ml_risk_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ml_risk"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ts_ecoexp</Name>
+
+        <Title>Tsunamis economical exposure</Title>
+        <Abstract>This dataset includes an estimation of the annual economical exposition to tsunamis. It is based on three sources: 1) A comprehensive list of reports and scientific papers compiled and utilized in producing tsunami hazard maps as well as finding return periods of future events. 2) Applying numerical tsunami models and zooming on selected areas. 3) A Global Domestic Product grid for the year 2007, provided by the World Bank. Unit is expected average annual GDP (2007 as the year of reference) exposed in (US $, year 2000 equivalent) . This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Tsunamis</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>economical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.002</eastBoundLongitude>
+          <southBoundLatitude>-58.0</southBoundLatitude>
+
+          <northBoundLatitude>85.003</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-58.0" miny="-180.0" maxx="85.003" maxy="180.002"/>
+        <Style>
+          <Name>ts_ecoexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ts_ecoexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ts_frequency</Name>
+
+        <Title>Tsunamis frequency</Title>
+        <Abstract>This dataset includes an estimate of tsunami frequency. It is based on two sources: 1) A comprehensive list of reports and scientific papers compiled and utilized in producing tsunami hazard maps as well as finding return periods of future events. 2) Applying numerical tsunami models and zooming on selected areas. Unit is expected affected percentage of each pixel over a minimum return period of 500 years. This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Tsunamis</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>frequency</Keyword>
+
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+        </KeywordList>
+
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.025</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-190.285" miny="-187.273" maxx="184.285" maxy="187.298"/>
+        <Style>
+          <Name>ts_frequency_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ts_frequency"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>preview:ts_physexp</Name>
+
+        <Title>Tsunamis physical exposure</Title>
+        <Abstract>This dataset includes an estimation of the annual physical exposition to tsunamis. It is based on three sources: 1) A comprehensive list of reports and scientific papers compiled and utilized in producing tsunami hazard maps as well as finding return periods of future events. 2) Applying numerical tsunami models and zooming on selected areas. 3) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory). Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) . This product was designed by International Centre for Geohazards /NGI for the Global Assessment Report on Risk Reduction (GAR). It was modeled using global data. Credit: GIS processing International Centre for Geohazards /NGI.</Abstract>
+        <KeywordList>
+          <Keyword>Tsunamis</Keyword>
+          <Keyword>Preview</Keyword>
+          <Keyword>physical</Keyword>
+
+          <Keyword>exposure</Keyword>
+          <Keyword>GAR</Keyword>
+          <Keyword>UNDP</Keyword>
+          <Keyword>ISDR</Keyword>
+          <Keyword>UNEP</Keyword>
+          <Keyword>GRU</Keyword>
+
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.002</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+
+          <northBoundLatitude>84.001</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="84.001" maxy="180.002"/>
+        <Style>
+          <Name>ts_physexp_style</Name>
+          <Title>Raster</Title>
+          <Abstract>A sample style for rasters, good for displaying imagery</Abstract>
+
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://preview.grid.unep.ch:8080/geoserver/ows?service=WMS&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=ts_physexp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+
+</WMS_Capabilities>
+
