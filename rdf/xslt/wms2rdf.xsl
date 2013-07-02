@@ -268,7 +268,7 @@ Copyright 2012 Terradue Srl.
 		<dct:spatial><xsl:value-of select="$spatial"/></dct:spatial>
 		<dc:format><xsl:value-of select="$format"/></dc:format>
 		<xsl:if test="$now!=''">
-		        <updated><xsl:value-of select="$now"/>Z</updated>        
+			<dct:dateSubmitted><xsl:value-of select="$now"/>Z</dct:dateSubmitted>        
 		</xsl:if>
 
 		<dclite4g:projection><xsl:value-of select="$crs"/></dclite4g:projection>
