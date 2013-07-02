@@ -1,12 +1,12 @@
-trax/owc 
+trax/json 
 
-= OGC Context Documents in JSON =
+= Transformation of ATOM and other XML documents in JSON =
 
-Data Cleansing, Validators and Stylesheet transformations for OWS Context Documents in JSON encoding
+Data Casting, Validators and Stylesheet transformations for JSON
 
-This set of xslt files map different web services to an JSON document compatible with 
-the OpenGIS Web Context specification 1.0.0
+This is part of experiments for the development of the JSON encoding 
+for the OGC Context Document specification 1.0.0
 
-	Copyright 2011-2012 Terradue srl
+	Copyright 2011-2013 Terradue srl
         This product includes software developed by
         Terradue srl (http://www.terradue.com/).
