@@ -23,6 +23,7 @@ osDocumentConstruct =
       & element os:AdultContent { "false" | "true" } ? 
       & element os:Language {xsd:string { pattern="[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})*"}}? 
       & element os:InputEncoding { text } ? & element os:OutputEncoding { text } ? 
+      & undefinedAttribute*
       & extensionElement*
 
 osdUrlAttr = attribute template { text }, attribute type { text },
