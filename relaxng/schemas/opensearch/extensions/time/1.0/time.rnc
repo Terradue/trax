@@ -1,6 +1,6 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar 
-   # OpenSearch Description Document as defined in OGC 10-032 for time extension
+   # OpenSearch elements as defined in OGC 10-032 for time extension
 
 namespace time = "http://a9.com/-/opensearch/extensions/time/1.0/" 
 

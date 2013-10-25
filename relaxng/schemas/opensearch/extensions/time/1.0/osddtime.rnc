@@ -1,6 +1,7 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar for
-   # OpenSearch Description Document
+   # OpenSearch Description Document as defined in OGC 10-032 
+   # for the time extension   
    
 namespace os = "http://a9.com/-/spec/opensearch/1.1/"
 namespace s = "http://purl.oclc.org/dsdl/schematron"
@@ -11,6 +12,7 @@ namespace time = "http://a9.com/-/opensearch/extensions/time/1.0/"
 include "time.rnc"
 
 # Replacing definitions on RFC4287 plus OpenSearch
+# relative path schemas/opensearch/1.1/ folder
 include "../../../1.1/osdd.rnc"{
 
 	  undefinedAttribute = attribute * - (local:* | time:* ) { text }

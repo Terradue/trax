@@ -1,6 +1,6 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar 
-   # OpenSearch Description Document as defined in OGC 10-032 for geo extension
+   # OpenSearch Query Element as defined in OGC 10-032 for the geo extension
 
 namespace geo = "http://a9.com/-/opensearch/extensions/geo/1.0/"
 

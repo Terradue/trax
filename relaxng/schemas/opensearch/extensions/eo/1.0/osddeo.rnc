@@ -11,6 +11,7 @@ namespace eo = "http://a9.com/-/opensearch/extensions/eo/1.0/"
 include "eo.rnc"
 
 # Redefine the foreign attribute to exclude eo:* elements
+# relative path schemas/opensearch/1.1/ folder
 include "../../../1.1/osdd.rnc"{
      undefinedAttribute = attribute * - (local:* | eo:* ) { text }
 

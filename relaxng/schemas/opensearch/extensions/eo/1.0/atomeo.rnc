@@ -37,6 +37,7 @@ anyChildren =  undefinedAttribute*, extensionElement*
 include "eo.rnc"
 
 # Replacing definitions on RFC4287 plus OpenSearch 
+# relative path schemas/opensearch/1.1/ folder
 include "../../../1.1/osatom.rnc"{
 
       undefinedAttribute = attribute * - (xml:base | xml:lang | local:* | eo:* ) { text }

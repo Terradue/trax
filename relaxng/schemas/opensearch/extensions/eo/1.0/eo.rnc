@@ -1,6 +1,6 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar 
-   # OpenSearch Description Document as defined in OGC 13-026 for eo extension
+   # OpenSearch Query Element as defined in OGC 13-026 for the eo extension
 
 namespace eo = "http://a9.com/-/opensearch/extensions/eo/1.0/"
  
