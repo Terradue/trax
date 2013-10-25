@@ -92,9 +92,9 @@ if [ -z "$res" ]; then
 			fi
 		fi
 		for ff in `ls $file`
-			do if [ $file != "output/file_$PID/stdin" ]; then echo "$ff"; fi
+			do if [ "$file" != "output/file_$PID/stdin" ]; then echo "$ff"; fi
 			cat $ff > output/file_$PID/input.xml
-			java -jar $jingjar output/file_$PID/file.rng output/file_$PID/input.xml 1>> output/file_${PID}/jing.log 2>> output/file_${PID}/jing.log
+			java -jar $jingjar output/file_$PID/file.rng output/file_$PID/input.xml 1> output/file_${PID}/jing.log 2> output/file_${PID}/jing.log
 			awk -F "output/file_$PID/input.xml" '{ print $2 }' < output/file_${PID}/jing.log > output/file_${PID}/err.log
 			res=`cat output/file_${PID}/err.log`
 			#rm output/file_$PID/jing.*
