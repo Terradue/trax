@@ -49,15 +49,16 @@ Copyright 2013 Terradue Srl.
 			<xsl:apply-templates select="dclite4g:Series/*[name()=$element]"/>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:apply-templates select="dclite4g:DataSet/*[name()=$element]"/>
+			<xsl:apply-templates select="dclite4g:DataSet/*[name()=$element] | dclite4g:DataSet/@*[name()=$element]"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="*">
-	<xsl:value-of select="."/><xsl:text>
+<xsl:template match="* | @*">
+	<xsl:value-of select="."/><xsl:text>	
 </xsl:text>
 </xsl:template>
+
 
 
 <xsl:template match="dclite4g:onlineResource">
