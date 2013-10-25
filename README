@@ -1,7 +1,7 @@
 Terradue trax components 
 
-= Data casting, validators and transformations  =
+= Data casting, schemas and transformations  =
 
-This project presents a set of transient services to perform data cleansing, validate feeds and perform transformations.
+This project presents a set of transient services to perform data casting, validate feeds and perform transformations.
 It focuses on geo-spatial data and OGC Services.
 
