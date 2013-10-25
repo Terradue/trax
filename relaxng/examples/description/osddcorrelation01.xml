@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+	xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" xmlns:param="http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"
+	xmlns:time="http://a9.com/-/opensearch/extensions/time/1.0/" xmlns:cor="http://a9.com/-/opensearch/extensions/correlation/1.0/">
+	<ShortName>Web Search</ShortName>
+	<LongName>Example.com Web Search</LongName>
+	<Description>Use Example.com to search the Web.</Description>
+	<Tags>example web</Tags>
+	<Contact>admin@example.com</Contact>
+	<Url type="application/atom+xml"
+		template="http://example.com/myatom/?pw={startPage?}&amp;bbox={geo:bo_x?}&amp;correlatedTo={cor:with?}&amp;spatialCover={cor:spatial?}&amp;timeCover={cor:time}&amp;function={cor:function?}&amp;param={cor:parameter}" />
+	<param:Parameter name="function" value="{cor:function}"
+		minimum="0" title="Correlation Functions">
+		<param:Option value="interferometric" label="Interferometric Search" />
+	</param:Parameter>
+	<param:Parameter name="param" value="{cor:parameter}"
+		minimum="0" title="Correlation Parameters" pattern="burst:[\+\-]?[\d]*,baseline:[\+\-]?[\d]*" />
+	<Attribution>Copyright 2013, Example.com, Inc.</Attribution>
+	<SyndicationRight>open</SyndicationRight>
+</OpenSearchDescription>
