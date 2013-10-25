@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xmlns:owc="http://www.opengis.net/owc/1.0/" xmlns:ows="http://www.opengis.net/ows" xml:lang="en">
-  <category scheme="http://www.opengis.net/spec/owc/specReference" term="http://www.opengis.net/spec/owc/1.0/req/atom" label="This file is compliant with version 1.0 of OGC Context"/>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:owc="http://www.opengis.net/owc/1.0" xml:lang="en">
+  <link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
   <title>GeoServer Web Map Service</title>
   <id>http://ows.genesi-dec.eu/geoserver/385d7d71-650a-414b-b8c7-739e2c0b5e76/wms?SERVICE=WMS&amp;/</id>
   <subtitle type="text">A compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</subtitle>

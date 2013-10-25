@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xmlns:owc="http://www.opengis.net/owc" xml:lang="en">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:owc="http://www.opengis.net/owc/1.0" xml:lang="en">
   <title>GeoServer Web Map Service</title>
   <id>http://geoserver.sourceforge.net/html/index.php/</id>
-  <category scheme="http://www.opengis.net/owc/specReference" term="1.0" label="This file is compliant with version 1.0 of OGC Context"/>
+  <link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
   <subtitle type="text">A compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</subtitle>
   <updated>2012-09-12T10:16:46Z</updated>
   <dc:publisher>ESA</dc:publisher>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<entry xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xmlns:owc="http://www.opengis.net/owc/1.0/" xmlns:ows="http://www.opengis.net/ows">
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:georss="http://www.georss.org/georss" 
+    xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:owc="http://www.opengis.net/owc/1.0" xmlns:ows="http://www.opengis.net/ows">
   <id>http://nsidc.org/cgi-bin/atlas_north?/</id>
   <title>countries</title>
-  <author>
+ <author>
     <name>NSIDC User Services</name>
     <email>nsidc@nsidc.org</email>
     <uri>http://nsidc.org/cgi-bin/atlas_north?</uri>

@@ -6,7 +6,9 @@
 	xmlns:owc="http://www.opengis.net/owc/1.0" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xml:lang="en">
-	<category scheme="http://www.opengis.net/spec/owc/specReference" term="http://www.opengis.net/spec/owc/1.0/req/atom" label="This file is compliant with version 1.0 of OGC Context"/>
+	<link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
 	<id>http://www.opengis.net/owc/1.0/examples/wcs1-raj</id>
 	<title>Context Example :: Web Coverage Service</title>
 	<author>

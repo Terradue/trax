@@ -5,7 +5,9 @@
 	xmlns:gml="http://www.opengis.net/gml" 
 	xmlns:owc="http://www.opengis.net/owc/1.0" 
 	xml:lang="en">
-	<category scheme="http://www.opengis.net/spec/owc/specReference" term="http://www.opengis.net/spec/owc/1.0/req/atom" label="This file is compliant with version 1.0 of OGC Context"/>
+	<link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
 	<title>Satellite Image and Countries borders Over France and England</title>
 	<id>https://github.com/Terradue/trax/tree/master/owc/bin/../examples/meris_borders.atom/</id>
 	<subtitle type="text">Two WMS layers giving  from different servers</subtitle>

@@ -5,14 +5,16 @@
 	xmlns:gml="http://www.opengis.net/gml" 
 	xmlns:owc="http://www.opengis.net/owc/1.0" 
 	xml:lang="ca-CA">
-	<category scheme="http://www.opengis.net/spec/owc/specReference" term="http://www.opengis.net/spec/owc/1.0/req/atom" label="This file is compliant with version 1.0 of OGC Context"/>
+	<link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
 	<id>http://www.opengis.net/owc/1.0/examples/WMS_scale</id>
 	<title>Ortofotoimatge de Barcelona 1:5 000 [ICC]</title>	
 	<subtitle type="html">
               Finestra l'ortofotoimatge de Catalunya 1:5 000 [ICC]
    </subtitle>
    <author>
-	   <name>Joan Masó</name>
+         <name>Joan Mas<F3></name>
    </author>
 	<updated>2012-11-04T17:26:23Z</updated>
 	<!-- creatorDisplay  -->
@@ -32,9 +34,9 @@
 		<id>http://shagrat.icc.es/lizardtech/iserv/ows/orto5m</id>
 		<title>Ortofotoimatge de Barcelona 1:5 000 [ICC]</title>
 		<author>
-     		<name>ICC</name>
-	    	<email>icc@icc.cat</email>
-	 	</author>
+			<name>ICC</name>
+			<email>icc@icc.cat</email>
+		</author>
 		<updated>2011-11-01T00:00:00Z</updated>
 		<dc:publisher>CREAF</dc:publisher>
 		<georss:where>
