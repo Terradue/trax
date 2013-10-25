@@ -1,0 +1,37 @@
+# -*- rnc -*-
+   # RELAX NG Compact Syntax Grammar for
+   # OpenSearch Description Document with the Geo Extension
+   
+namespace os = "http://a9.com/-/spec/opensearch/1.1/"
+namespace s = "http://purl.oclc.org/dsdl/schematron"
+namespace local = ""
+namespace cor = "http://a9.com/-/opensearch/extensions/correlation/1.0/"
+
+include "correlation.rnc"
+
+# Replacing definitions on RFC4287 plus OpenSearch
+# relative path schemas/opensearch/1.1/ folder
+include "../../../1.1/osdd.rnc"{
+
+	 undefinedAttribute = attribute * - (local:* | cor:* ) { text }
+
+	 osDocument = [ 
+	     s:pattern [  name="Check for Atom Url template" 
+	      s:rule [ context = "os:OpenSearchDescription"
+              s:assert [ test = "os:Url[@type='application/atom+xml']"
+               "An OpenSearch Description Document must have a Url template with "
+               ~ " type of ATOM document." ]]
+          ]
+               
+         s:pattern [  name="Check for box parameter" 
+          s:rule [ context = "os:OpenSearchDescription"
+              s:assert [ test = "os:Url[@type='application/atom+xml' and substring-before(@template,'{cor:with')!='' and ( substring-before( @template, '{cor:time' ) != '' or substring-before(@template,'{cor:spatial')!='' or substring-before(@template,'{cor:function')!='' ) ]"
+               "An OpenSearch Description Document must have at least a cor:with and a spatial, temporal or a correlation function "
+               ~ " in the ATOM response." ]]
+          ]      
+                         
+         ]
+     		element os:OpenSearchDescription { osDocumentConstruct } 	
+}
+# EOF
+#

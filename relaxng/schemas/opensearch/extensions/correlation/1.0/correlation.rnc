@@ -1,0 +1,14 @@
+# -*- rnc -*-
+   # RELAX NG Compact Syntax Grammar 
+   # OpenSearch Query Element as defined in OGC 13-068 for the correlation extension
+
+namespace cor = "http://a9.com/-/opensearch/extensions/correlation/1.0/"
+
+osQueryAttr &= attribute cor:with { xsd:anyURI }
+			& attribute cor:time { xsd:string { pattern = "[\+\-]?[\d]*,[\+\-]?[\d]*" } }?
+            & attribute cor:spatial { xsd:string { pattern ="[\d]{1,2}|100" } } ?			
+            & attribute cor:minimum { xsd:string { pattern = "[\d]*" } } ?
+            & attribute cor:function { text } ?
+            & attribute cor:parameters { xsd:string { pattern ="(\w+):(\w+)?(,(\w+):(\w+))*" } }?
+            
+# EOF
