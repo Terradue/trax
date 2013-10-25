@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+xmlns:esipdiscovery="http://commons.esipfed.org/ns/discovery/1.2/" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:time="http://a9.com/-/opensearch/extensions/time/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" esipdiscovery:version="1.2">
+<title>ExampleDataCollection Files</title> <subtitle type="html">
+Total Results: 558
+Max Items Per Page:1</subtitle> <updated>2009-07-16T18:30:02Z</updated> <author>
+<name>Example Search Provider</name>
+<email>help@example.com</email> </author>
+<id>http://example.com/cgi-bin/granlist.pl</id> <opensearch:totalResults>558</opensearch:totalResults> <opensearch:itemsPerPage>1</opensearch:itemsPerPage> <entry>
+<title>ExampleDataCollection.2009.01.01.052324Z.005.hdf</title> <updated>2009-01-01T05:23:24Z</updated>
+<id>http://example.com/ExampleDataCollection.005/2009/001/Example.2009.01.0 1.054.hdf</id>
+<link rel="enclosure" length="2510007" href="http://example.com/ExampleDataCollection.005/2009/001/Example.2009.01 .01.054.hdf"/>
+<link rel="enclosure" length="2510007" type="application/x-opendap" xlink:role="http://xml.opendap.org/dap/dap2.xsd" xlink:type="simple" href="http://example.com/opendap/ExampleDataCollection.005/2009/001/Example .2009.01.01.054.hdf"/>
+<link rel="enclosure" length="4539076" type="application/x-netcdf" xlink:role="http://xml.opendap.org/dap/dap2.xsd" xlink:type="simple" href="http://example.com/opendap/ExampleDataCollection.005/2009/001/Example .2009.01.01.054.hdf.nc"/>
+<link rel="describedby" type="text/xml" href="http://example.com/Example.005/2009/001/Example.2009.01.01.054.hdf.xm l"/>
+<link rel="icon" href="http://example.com/ExampleDataCollection/Example.2009.01.01.054.hdf" type="image/jpeg"/>
+<georss:box>-42.017, 33.9236, -63.6063, 10.6306</georss:box> <time:start>2009-01-01T05:23:24Z</time:start> <time:end>2009-01-01T05:29:24Z</time:end> <dc:date>2009-01-01T05:23:24Z/2009-01-01T05:29:24Z</dc:date> <summary type="html">start:2009-01-01T05:23:24Z, end:2009-01-
+01T05:29:24Z, size:2510007</summary>
+<content type="text">Example data file for 2009-01-01T05:23:24Z to
+2009-01-01T05:29:24Z</content> </entry>
+</feed>

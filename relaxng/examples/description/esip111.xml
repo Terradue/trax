@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+xmlns:geo="http://a9.com/- /opensearch/extensions/geo/1.0/"
+xmlns:time="http://a9.com/- /opensearch/extensions/time/1.0/"
+xmlns:esipdiscovery="http://commons.esipfed.org/ns/discovery/1.2/" esipdiscovery:version="1.2">
+<ShortName>Example Dataset Search</ShortName>
+<Description>Use this example Dataset Search to obtain a list of Earth Science Data Sets</Description>
+<Tags>Example Dataset Search</Tags>
+<Contact>help@example.com</Contact>
+<Url type="application/atom+xml" 
+template="http://example.com/cgi-bin/collectionlist.pl?keyword={searchTerms}&amp;page=1&amp;count={count?}&amp;osLocation={geo:box?}&amp;osLocationPlaceName={geo:name?}&amp;startTime={time:start?}&amp;endTime={time:end?}&amp;format=atom"/>
+
+
+<Query role="example" searchTerms="ozone" title="Sample Bounding Box Search" time:start="2010-01-01"
+time:end="2010-01-10" geo:box="-130.0,25.0,-65.0,50.0"/> 
+<!--
+href="http://example.com/cgi- bin/collectionlist.pl?keyword=ozone&amp;page=1&amp;count=10&amp;osLocation- 130.0,25.0,-65.0,50.0=&amp;startTime=2010-01-01&amp;endTime=2010-01- 10&amp;format=atom"/-->
+
+<Query role="example" searchTerms="Surface Air Temperature" title="Sample PlaceName Search" time:start="2010-01-01" time:end="2010-01-10" geo:name="New York"/>
+
+<!--href="http://example.com/cgi- bin/collectionlist.pl?keyword=Surface%20Air%20Temperature&amp;page=1&amp;co unt=100&amp;osLocationPlaceName=greenbelt&amp;startTime=2010-01- 01&amp;endTime=2010-01-10&amp;format=atom"/-->
+
+</OpenSearchDescription>

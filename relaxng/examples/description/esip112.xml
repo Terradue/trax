@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<os:OpenSearchDescription xmlns:os="http://a9.com/-/spec/opensearch/1.1/"
+xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" xmlns:time="http://a9.com/-/opensearch/extensions/time/1.0/" xmlns:esipdiscovery="http://commons.esipfed.org/ns/discovery/1.2/" esipdiscovery:version="1.2">
+<os:ShortName>ExampleDataCollection.005</os:ShortName>
+<os:Description>Obtain a list of URLs for data collection ExampleDataCollection.005</os:Description>
+<os:Tags>ExampleDataCollection.005</os:Tags> <os:Contact>help@example.com</os:Contact>
+<os:Url type="application/atom+xml" template="http://example.com/cgi-
+bin/filelist.pl?dataSet=ExampleDataCollection.005&amp;page=1&amp;maxgranules= {os:count?}&amp;osLocation={geo:box?}&amp;order=a&amp;endTime={time:end}&amp; startTime={time:start}&amp;format=atom"/>
+<os:Query role="example" title="Sample Search" time:start="1980-01-01" time:end="2010-01-10" os:count="100" geo:box="-130.0,25.0,-65.0,50.0"/> <!--
+href="http://example.com/cgi- bin/filelist.pl?page=1&amp;dataSet=ExampleDataCollection.005&amp;order=a&amp; maxgranules=100&amp;startTime=1980-01-01&amp;endTime=2010-01-10 23:59:59&amp;format=atom"/--></os:OpenSearchDescription>

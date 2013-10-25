@@ -1,0 +1,21 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://a9.com/-/opensearch/extensions/geo/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:esipdiscovery="http://commons.esipfed.org/ns/discovery/1.2/">
+<title>Collection results for Example Data Collection</title> <subtitle type="html">Example Data Collection</subtitle> <updated>2013-02-06T23:12:01Z</updated>
+<author>
+<name>Example Data Provider</name>
+<email>help@example.com</email>
+</author>
+<id>http://example.com/cgi-bin/collectionlist.pl</id> <opensearch:totalResults>1</opensearch:totalResults> <opensearch:itemsPerPage>1</opensearch:itemsPerPage>
+<link rel="self" href="http://example.com/cgi-bin/collectionlist.pl"/> <entry>
+<title>Level 2 Standard physical retrieval</title> <id>http://dx.doi.org/10.1000/182</id> <updated>2013-02-02T23:00:01Z</updated>
+<author>
+<name>Example Search Provider</name>
+<email>help@example.com</email>
+</author>
+<dc:date>2002-08-30/2013-02-05</dc:date>
+<summary type="text">DataSet: ExampleDataCollection.005</summary> <content type="text">Example Data Collection, 2002-08-30 to 2013-02-
+05</content>
+<link rel="search" type="application/opensearchdescription+xml"
+title="Example Data Collection Version 5" href="http://example.com/granule_search_ExampleDataCollection_005.xml"/>
+<link rel="describedBy" type="text/html" title="ExampleDataCollection_005.xml info" href="http://example.com/collections/ExampleDataCollection_005.shtml"/>
+      </entry>
+    </feed>
