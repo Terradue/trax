@@ -27,9 +27,9 @@ osDocumentConstruct =
       & extensionElement*
 
 osdUrlAttr = attribute template { text }, attribute type { text },
-	     attribute rel { osdRelationValues }?, attribute indexOffset { xsd:int }?,
-         attribute pageOffset { xsd:int }?, undefinedAttribute*
-
+	          attribute rel { osdRelationValues }?, attribute indexOffset { xsd:int }?,
+              attribute pageOffset { xsd:int }?, undefinedAttribute*, extensionElement*
+              
 osdImage = attribute height {xsd:int}, attribute width {xsd:int}, 
            attribute type {xsd:string}, text 
 
