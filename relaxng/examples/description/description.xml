@@ -21,7 +21,7 @@
 	</Image>
 	<Image height="16" width="16" type="image/vnd.microsoft.icon">http://eo-virtual-archive4.esa.int/favicon.ico
 	</Image>
-	<Query role="example" geo:box="-25,30,45,70" geo:numericrange="[1123,-22323]" geo:floatcrange="{-121.12,-112.121}" geo:daterange="{2001-01-02T20:20:20.00Z,2002-01-20}" />
+	<Query role="example" geo:box="-25,30,45,70"  />
 	<Developer>Terradue GeoSpatial Development Team</Developer>
 	<Attribution> Terradue Srl. Copyright 2008-11, All Rights Reserved
 	</Attribution>
