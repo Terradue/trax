@@ -1,10 +1,11 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar for 
    # OpenSearch Description Parameter Extension
-
+   
+namespace s = "http://purl.oclc.org/dsdl/schematron"
+namespace local = ""
+namespace os = "http://a9.com/-/spec/opensearch/1.1/"
 namespace param = "http://a9.com/-/opensearch/extensions/param/1.0/"
-
-osDocumentConstruct &= element param:Parameter { parameterConstruct } *
 
 parameterConstruct =  attribute name { xsd:token }?, 
 					  attribute value { xsd:token }?,
@@ -24,10 +25,41 @@ parameterConstruct =  attribute name { xsd:token }?,
 paramOption = attribute value { xsd:string }, 
                attribute label { xsd:string }, undefinedAttribute*
 
-osdUrl &= attribute param:method { paramMethod }? 
+paramUrl = attribute param:method { paramMethod }? 
             & attribute param:enctype {  xsd:string { pattern = ".+/.+" } }?
-          
+             &  element param:Parameter { parameterConstruct } * 
+             
 paramMethod = "OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT"
+
+#extend the Url definition here
+osdUrlAttr &= paramUrl
+
+# Redefine the foreign attribute to exclude param:* elements
+# relative path schemas/opensearch/1.1/ folder
+include "../../../1.1/osdd.rnc"{
+
+
+		# Simple Extension
+		simpleExtensionElement = element * - ( os:* | param:* ){ text } 
+		
+		# Structured Extension
+		structuredExtensionElement = element * - ( os:*  | param:* ) {
+		         (attribute * { text }+, (text|anyElement)*)
+		       | (attribute * { text }*, (text?, anyElement+, (text|anyElement)*))}
+		
+		# Other Extensibility
+		undefinedAttribute = attribute * - ( local:* | param:* ) { text }
+		anyForeignElement = element * - ( os:*  | param:* ) { (attribute * { text } | text | anyElement)* }
+
+			
+	    osDocument = [ s:rule [ context = "os:OpenSearchDescription"
+              s:assert [ test = "os:Url/param:Parameter"
+               "This URL template does not contain a Parameter element." ]]]
+     		element os:OpenSearchDescription { osDocumentConstruct } 	
+}
+
+#EOF
+
 
 
 # EOF
