@@ -15,4 +15,4 @@ osQueryAttr = attribute role { osQueryRoleValues },
     
 osQueryRoleValues = "request" | "example" | "related" | "correction" | "subset" | "superset"   
 
-
+# EOF
