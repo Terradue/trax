@@ -85,11 +85,6 @@
 
       # Redefine Atom rules    
       atomFeed = [
-      s:pattern [ name="check author" 
-       s:rule [ context = "atom:feed"
-         s:assert [ test = "atom:author or not(atom:entry[not(atom:author)])"
-           "An atom:feed must have an atom:author unless all "
-           ~ "of its atom:entry children have an atom:author."]]]
       
       s:pattern [ name="check profile link" 
        s:rule [ context = "atom:feed"
@@ -102,26 +97,13 @@
        element atom:feed { atomFeedConstruct }     
        
     atomEntry =[
-       s:pattern [ name="check entry content" 
+      s:pattern [ name="check entry content" 
        s:rule [ context = "atom:entry"
          s:assert [ test = "atom:content"
           "An atom:entry must have one atom:content MUST have content "
           ~ "element in a format understandable by generic Atom readers"
           ~ " ( @type equal to 'html' is recommended)"]]]
 
-	   s:pattern [ name="check entry's alternate link"
-       s:rule [ context = "atom:entry"
-	      s:assert [ test = "atom:link[@rel='alternate'] "
-            ~ "or atom:link[not(@rel)] or atom:content"
-            "An atom:entry must have at least one atom:link element "
-            ~ "with a rel attribute of 'alternate' or an atom:content."]]]
-
-	   s:pattern [ name="check entry's author"            
-       s:rule [ context = "atom:entry"
-         s:assert [ test = "atom:author or "
-	       ~ "../atom:author or atom:source/atom:author"
-	       "An atom:entry must have an atom:author "
-	       ~ "if its feed does not."]]]
        ]
       element atom:entry { atomEntryConstruct } 
    }
