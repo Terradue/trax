@@ -1,33 +1,29 @@
 # -*- rnc -*-
    # RELAX NG Compact Syntax Grammar for the
-   # Atom Format Specification Version 11
+   # Atom Format Specification 
    # Taken from http://tools.ietf.org/html/rfc4287#page-35
    # Defined a new constructor for ATOM Feed and Entry
 
    namespace atom = "http://www.w3.org/2005/Atom"
    namespace xhtml = "http://www.w3.org/1999/xhtml"
-   namespace s = "http://www.ascc.net/xml/schematron"
+   namespace s = "http://purl.oclc.org/dsdl/schematron"
    namespace local = ""
    
    start = atomFeed | atomEntry
 
    # Common attributes
-   atomCommonAttributes =
-      attribute xml:base { atomUri }?, attribute xml:lang { atomLanguageTag }?,
-      undefinedAttribute*
+   atomCommonAttributes = attribute xml:base { atomUri }?, 
+                           attribute xml:lang { atomLanguageTag }?, undefinedAttribute*
 
    # Text Constructs
-   atomPlainTextConstruct =
-      atomCommonAttributes, attribute type { "text" | "html" }?, text
+   atomPlainTextConstruct = atomCommonAttributes, attribute type { "text" | "html" }?, text
 
-   atomXHTMLTextConstruct =
-      atomCommonAttributes, attribute type { "xhtml" }, xhtmlDiv
+   atomXHTMLTextConstruct = atomCommonAttributes, attribute type { "xhtml" }, xhtmlDiv
 
    atomTextConstruct = atomPlainTextConstruct | atomXHTMLTextConstruct
 
    # Person Construct
-   atomPersonConstruct =
-      atomCommonAttributes,
+   atomPersonConstruct = atomCommonAttributes,
       (element atom:name { text } & element atom:uri { atomUri }?
        & element atom:email { atomEmailAddress }?  & extensionElement*)
 
@@ -35,69 +31,51 @@
    atomDateConstruct = atomCommonAttributes, xsd:dateTime
 
    # atom:feed
-   atomFeed = 
-      [
-         s:rule [
-            context = "atom:feed"
-            s:assert [
-               test = "atom:author or not(atom:entry[not(atom:author)])"
+   atomFeed = [
+   	   s:pattern [ name="check authors"
+         s:rule [ context = "atom:feed"
+            s:assert [ test = "atom:author or not(atom:entry[not(atom:author)])"
                "An atom:feed must have an atom:author unless all "
-               ~ "of its atom:entry children have an atom:author."
-            ]]]
+               ~ "of its atom:entry children have an atom:author." ]]]]
       element atom:feed { atomFeedConstruct } 
    
    atomFeedConstruct =
-         atomCommonAttributes,
-         (atomAuthor* & atomCategory* & atomContributor*
-          & atomGenerator? & atomIcon? & atomId & atomLink* 
-          & atomLogo? & atomRights? & atomSubtitle? & atomTitle 
-          & atomUpdated & extensionElement*),
-         atomEntry*
+         atomCommonAttributes, (atomAuthor* & atomCategory* & atomContributor*
+          & atomGenerator? & atomIcon? & atomId & atomLink* & atomLogo? & atomRights? & 
+          atomSubtitle? & atomTitle & atomUpdated & extensionElement*), atomEntry*
       
    # atom:entry
-   atomEntry = 
-      [
-         s:rule [
-            context = "atom:entry"
-            s:assert [
+   atomEntry = [ 
+   	   s:pattern [ name="check entry's alternate link"
+        s:rule [ context = "atom:entry" s:assert [
                test = "atom:link[@rel='alternate'] "
-               ~ "or atom:link[not(@rel)] "
-               ~ "or atom:content"
+               ~ "or atom:link[not(@rel)] or atom:content"
                "An atom:entry must have at least one atom:link element "
-               ~ "with a rel attribute of 'alternate' "
-               ~ "or an atom:content."
-            ]
-         ]
-         s:rule [
-            context = "atom:entry"
-            s:assert [
-               test = "atom:author or "
-               ~ "../atom:author or atom:source/atom:author"
-               "An atom:entry must have an atom:author "
-               ~ "if its feed does not."
+               ~ "with a rel attribute of 'alternate' or an atom:content."
             ]]]
+  	   s:pattern [ name="check entry's author"            
+         s:rule [ context = "atom:entry" s:assert [
+               test = "atom:author or ../atom:author or atom:source/atom:author"
+               "An atom:entry must have an atom:author if its feed does not."
+            ]]]]
       element atom:entry { atomEntryConstruct } 
    
    atomEntryConstruct = 
          atomCommonAttributes,
          (atomAuthor* & atomCategory* & atomContent? & atomContributor*
-          & atomId & atomLink* & atomPublished? & atomRights?
-          & atomSource? & atomSummary? & atomTitle & atomUpdated
-          & extensionElement*)
+          & atomId & atomLink* & atomPublished? & atomRights? & atomSource? 
+          & atomSummary? & atomTitle & atomUpdated & extensionElement*)
         
           
    # atom:content
 
-   atomInlineTextContent =
-      element atom:content { atomCommonAttributes,
+   atomInlineTextContent = element atom:content { atomCommonAttributes,
          attribute type { "text" | "html" }?, (text)* }
 
-   atomInlineXHTMLContent =
-      element atom:content { atomCommonAttributes,
+   atomInlineXHTMLContent = element atom:content { atomCommonAttributes,
          attribute type { "xhtml" }, xhtmlDiv }
 
-   atomInlineOtherContent =
-      element atom:content { atomCommonAttributes,
+   atomInlineOtherContent = element atom:content { atomCommonAttributes,
          attribute type { atomMediaType }?, (text|anyElement)*}
 
    atomOutOfLineContent = element atom:content { atomCommonAttributes,
@@ -110,14 +88,10 @@
    atomAuthor = element atom:author { atomPersonConstruct }
 
    # atom:category
-   atomCategory =
-      element atom:category {
-         atomCommonAttributes,
-         attribute term { text },
-         attribute scheme { atomUri }?,
-         attribute label { text }?,
-         undefinedContent
-      }
+   atomCategory = 
+      element atom:category { atomCommonAttributes, attribute term { text },
+         attribute scheme { atomUri }?, attribute label { text }?,
+         undefinedContent}
 
    # atom:contributor
    atomContributor = element atom:contributor { atomPersonConstruct }
@@ -137,12 +111,10 @@
 
    # atom:link
    atomLink =
-      element atom:link { atomCommonAttributes,
-         attribute href { atomUri }, attribute rel { atomNCName | atomUri }?,
-         attribute type { atomMediaType }?, attribute hreflang { atomLanguageTag }?,
-         attribute title { text }?, attribute length { text }?,
-         undefinedContent
-      }
+      element atom:link { atomCommonAttributes, attribute href { atomUri },
+         attribute rel { atomNCName | atomUri }?, attribute type { atomMediaType }?,
+         attribute hreflang { atomLanguageTag }?, attribute title { text }?, 
+         attribute length { text }?, undefinedContent}
 
    # atom:published
    atomPublished = element atom:published { atomDateConstruct }
@@ -151,11 +123,9 @@
    atomRights = element atom:rights { atomTextConstruct }
 
    # atom:source
-   atomSource =
-      element atom:source {
-         atomCommonAttributes,
-         (atomAuthor* & atomCategory* & atomContributor* & atomGenerator?
-          & atomIcon? & atomId? & atomLink* & atomLogo? & atomRights?
+   atomSource = element atom:source {
+         atomCommonAttributes, (atomAuthor* & atomCategory* & atomContributor* & 
+         atomGenerator? & atomIcon? & atomId? & atomLink* & atomLogo? & atomRights?
           & atomSubtitle? & atomTitle? & atomUpdated? & extensionElement*)}
 
    # atom:subtitle
@@ -177,9 +147,7 @@
    atomMediaType = xsd:string { pattern = ".+/.+" }
 
    # As defined in RFC 3066
-   atomLanguageTag = xsd:string {
-      pattern = "[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})*"
-   }
+   atomLanguageTag = xsd:string { pattern = "[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})*"}
 
    # Unconstrained; it's not entirely clear how IRI fit into
    # xsd:anyURI so let's not try to constrain it here
@@ -192,8 +160,7 @@
    simpleExtensionElement = element * - atom:* { text }
 
    # Structured Extension
-   structuredExtensionElement =
-      element * - atom:* {
+   structuredExtensionElement = element * - atom:* {
          (attribute * { text }+, (text|anyElement)*)
        | (attribute * { text }*, (text?, anyElement+, (text|anyElement)*))}
 
@@ -206,8 +173,7 @@
 
    anyElement = element * { (attribute * { text } | text | anyElement)* }
 
-   anyForeignElement =
-      element * - atom:* { (attribute * { text } | text | anyElement)* }
+   anyForeignElement = element * - atom:* { (attribute * { text } | text | anyElement)* }
 
    # XHTML
    anyXHTML = element xhtml:* { (attribute * { text } | text | anyXHTML)* }
