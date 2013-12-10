@@ -35,13 +35,10 @@
    owcOperation = element owc:operation { owcCommonAttributes, 
       attribute code { text }, attribute href { owcURL },
       attribute type { text }?, 
-      ( ( attribute method {"GET"} & 
-                element owc:result{( owcContentConstruct )}? 
-                & extensionElement* ) |
-        ( attribute method {"POST"} & 
-                element owc:result{( owcContentConstruct )}? 
-                & element owc:request {( owcContentConstruct )}? 
-                & extensionElement* ) )
+      ( attribute method { text } &  
+      element owc:result{( owcContentConstruct )}? 
+      & element owc:request {( owcContentConstruct )}? 
+      & extensionElement* )
    }
       
    # owcContent 
@@ -53,7 +50,7 @@
    
    # owcStyleSet 
    owcStyleSet = element owc:styleSet { owcCommonAttributes, 
-      attribute default { "0" | "1" } ?,
+      attribute default {  xsd:boolean } ?,
       (element owc:name { text } & element owc:title { text }
        &element owc:abstract { text }?
        &element owc:legendURL { attribute type { text },
