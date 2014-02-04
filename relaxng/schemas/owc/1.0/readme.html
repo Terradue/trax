@@ -117,20 +117,18 @@ The OWC:Operation contains always a <em>code</em> and <em>href</em> attribute. T
 Depending on the type of the HTTP verb defined on the <em>method</em> attribute (GET or POST) the element might have, respectively a <em>owc:result</em> or a <em>owc:result</em> and a <em>owc:request</em>
 <p></p>
 <pre># owcOperation 
-   owcOperation = 
-          element owc:operation { 
-             owcCommonAttributes, 
-             attribute code { text }, 
-             attribute href { owcURL },
-             attribute type { text }?, 
-            ( ( attribute method {"GET"} &amp; 
-                element owc:result{( owcContentConstruct )}? 
-                &amp; extensionElement* ) |
-              ( attribute method {"POST"} &amp; 
-                element owc:result{( owcContentConstruct )}? 
-                &amp; element owc:request {( owcContentConstruct )}? 
-                &amp; extensionElement* ) )
-   }</pre>
+   owcOperation =
+   		 element owc:operation { 
+   		 	owcCommonAttributes, 
+      		attribute code { text }, 
+      		attribute href { owcURL },
+      		attribute type { text }?, 
+      		( attribute method { text } &  
+      		   element owc:result{( owcContentConstruct )}? 
+     		 & element owc:request {( owcContentConstruct )}? 
+      		 & extensionElement* )
+   }
+   </pre>
 <h3><a name="OWC:Content"></a>  OWC:Content </h3>
 <p></p>
 The OWC:Content class contain any type of text or XML. Or inline or by reference but it cannot have both.
@@ -144,18 +142,19 @@ The OWC:Content class contain any type of text or XML. Or inline or by reference
   
    owcContent = element owc:content { owcContentConstruct } </pre>
 <h3><a name="OWC:StyleSet"></a>  OWC:StyleSet </h3>
-<pre>   owcStyleSet = element owc:styleSet { owcCommonAttributes, 
-      attribute default { "0" | "1" } ?,
-      (element owc:name { text } 
-       &amp; element owc:title { text }
-       &amp; element owc:abstract { text }?
-       &amp; element owc:legendURL { 
-                       attribute type { text },
-                       attribute href { owcHTTPURL } 
-       }?
-       &amp; owcContent? 
-       &amp; extensionElement*)
-   }  </pre>
+<pre>   # owcStyleSet 
+   owcStyleSet = element owc:styleSet { owcCommonAttributes, 
+      attribute default {  xsd:boolean } ?,
+      (element owc:name { text } & 
+       element owc:title { text }
+       &element owc:abstract { text }?
+       &element owc:legendURL { 
+       		attribute type { text },
+       		attribute href { owcURL } }?
+       &owcContent? 
+       & extensionElement*
+       )}  
+     </pre>
 <p></p>
 <h3><a name="OWC:Display"></a>  OWC:Display </h3>
 <pre> # owc:display <br>  owcDisplay = element owc:display {     <br>     (element owc:pixelWidth { xsd:integer }?<br>      &amp; element owc:pixelHeight { xsd:integer }?<br>      &amp; element owc:mmPerPixel { xsd:float }?)<br>      &amp; extensionElement*<br>  }  </pre>
@@ -221,13 +220,19 @@ The original GEORSS specification was defined in XSD so it was necessary to defi
 <p></p>
 There is a public repository for schema validation and conversion based on RELAX NG available at <a href="https://code.google.com/p/jing-trang/" target="_top">https://code.google.com/p/jing-trang/</a>
 <p></p>
-There is simple test script in <a href="test.sh" target="_top">test.sh</a> that executes
+This is simple test script that executes checks also examples
 <pre>
 java -jar lib/trang/trang.jar -I rnc -O rng schemas/owc.rnc schemas/owc.rng
 for ex in `ls examples/*.xml`
 	do java -jar lib/relames/relames.jar schemas/owc.rng $ex
 done
 </pre>
+<h3><a name="trang"></a>  trax </h3>
+
+The <a href="https://github.com/Terradue/trax/tree/master/relaxng/scripts" target="_new">trax rncv</a> is a XML validation with RELAX-NG Compact Syntax and ISO Schematron.
+
+It uses trang and jing, together with special XSLT files to validate the XML based on the Relax-NG schema and ISO  Schematron rules.
+
 <h3><a name="trang"></a>  trang </h3>
 <p></p>
 <a href="http://www.thaiopensource.com/relaxng/trang.html" target="_top">trang</a> converts between different schema languages for XML. It supports the following languages: <ul>
@@ -268,7 +273,7 @@ To validate Context Documents with <strong>jing</strong> enter the following com
 <h2><a name="Creation_Tools"></a>  Creation Tools </h2>
 <h3><a name="ows2owc.xsl"></a>  ows2owc.xsl </h3>
 <p></p>
-The <a href="https://github.com/Terradue/trax/tree/master/ows/xslt" target="_top">ows2owc</a> XSL Transformation file will make a OGC Context Document or Context Resource in Atom Encoding from a OGC Web Services <span class="foswikiNewLink">GetCapabilities<a href="/wiki/bin/edit/OWS9/GetCapabilities?topicparent=OWS9.CITEOWSContext01" rel="nofollow" title="Create this topic">?</a></span> document.<br>It currently supports: <ul>
+The <a href="https://github.com/Terradue/trax/tree/master/owc/xslt" target="_top">ows2owc</a> XSL Transformation file will make a OGC Context Document or Context Resource in Atom Encoding from a OGC Web Services <span class="foswikiNewLink">GetCapabilities<a href="/wiki/bin/edit/OWS9/GetCapabilities?topicparent=OWS9.CITEOWSContext01" rel="nofollow" title="Create this topic">?</a></span> document.<br>It currently supports: <ul>
 <li> Web Map Specification (WMS) 1.1.1 and 1.3.0
 </li> <li> Web Feature Specification (WFS) 1.1.0
 </li></ul> 
@@ -474,7 +479,7 @@ To create the request it is necessary to join all those parameters
         &lt;/xsl:choose&gt;
     &lt;/xsl:variable&gt;</pre>
 <p></p>
-Access the full XSLT transformation in the <a href="https://github.com/Terradue/trax/tree/master/ows/xslt" target="_top">trax</a> github site.
+Access the full XSLT transformation in the <a href="https://github.com/Terradue/trax/tree/master/owc/xslt" target="_top">trax</a> github site.
 <p></p>
 #EOF<br><br><br>
 
