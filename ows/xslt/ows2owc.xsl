@@ -191,9 +191,10 @@ Copyright 2013 Terradue Srl.
 </xsl:text>
 <feed xml:lang='en'>
 
-      <category scheme="http://www.opengis.net/spec/owc/specReference" 
-              term="http://www.opengis.net/spec/owc/1.0/req/atom" 
-              label="This file is compliant with version 1.0 of OGC Context"/> 
+      <link rel="profile"
+		href="http://www.opengis.net/spec/owc-atom/1.0/req/core"
+		title="This file is compliant with version 1.0 of OGC Context"/>
+			
       <title>
        <xsl:value-of select="ows:ServiceIdentification/ows:Title | wms:Service/wms:Title | Service/Title"/>
       </title>
